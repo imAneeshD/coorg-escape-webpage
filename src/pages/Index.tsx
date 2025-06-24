@@ -1,6 +1,6 @@
 
 import { useState } from "react";
-import { Phone, MapPin, MessageCircle, Calendar, Users, Star, Wifi, Car, Coffee, Thermometer } from "lucide-react";
+import { Phone, MapPin, MessageCircle, Calendar, Users, Star, Wifi, Car, Coffee, Thermometer, Mail } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -38,15 +38,69 @@ const Index = () => {
   ];
 
   const attractions = [
-    { name: "Abbey Falls", distance: "6.3 km", duration: "15 mins" },
-    { name: "Raja Seat", distance: "1.3 km", duration: "4 mins" },
-    { name: "Mandalpatti", distance: "19 km", duration: "57 mins" },
-    { name: "Tala Kavery", distance: "43 km", duration: "1 hr 18 mins" },
-    { name: "Nisarga Dhama", distance: "27 km", duration: "36 mins" },
-    { name: "Golden Temple (Bylakuppe)", distance: "35 km", duration: "50 mins" },
-    { name: "Dubare Forest", distance: "28 km", duration: "52 mins" },
-    { name: "Harangi Dam", distance: "35 km", duration: "45 mins" },
-    { name: "Nagarahole", distance: "67 km", duration: "1 hr 37 mins" }
+    { 
+      name: "Abbey Falls", 
+      distance: "6.3 km", 
+      duration: "15 mins",
+      image: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?q=80&w=400&auto=format&fit=crop",
+      description: "Spectacular waterfall amidst coffee plantations"
+    },
+    { 
+      name: "Raja Seat", 
+      distance: "1.3 km", 
+      duration: "4 mins",
+      image: "https://images.unsplash.com/photo-1501436513145-30f24e19fcc4?q=80&w=400&auto=format&fit=crop",
+      description: "Famous sunset point with garden views"
+    },
+    { 
+      name: "Mandalpatti", 
+      distance: "19 km", 
+      duration: "57 mins",
+      image: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?q=80&w=400&auto=format&fit=crop",
+      description: "Breathtaking hilltop views and jeep safari"
+    },
+    { 
+      name: "Tala Kavery", 
+      distance: "43 km", 
+      duration: "1 hr 18 mins",
+      image: "https://images.unsplash.com/photo-1484402628941-0bb20267684c?q=80&w=400&auto=format&fit=crop",
+      description: "Sacred source of River Cauvery"
+    },
+    { 
+      name: "Nisarga Dhama", 
+      distance: "27 km", 
+      duration: "36 mins",
+      image: "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?q=80&w=400&auto=format&fit=crop",
+      description: "Beautiful island formed by River Cauvery"
+    },
+    { 
+      name: "Golden Temple (Bylakuppe)", 
+      distance: "35 km", 
+      duration: "50 mins",
+      image: "https://images.unsplash.com/photo-1581833971358-2c8b550f87b3?q=80&w=400&auto=format&fit=crop",
+      description: "Largest Tibetan settlement in India"
+    },
+    { 
+      name: "Dubare Forest", 
+      distance: "28 km", 
+      duration: "52 mins",
+      image: "https://images.unsplash.com/photo-1513475382585-d06e58bcb0e0?q=80&w=400&auto=format&fit=crop",
+      description: "Elephant camp and river activities"
+    },
+    { 
+      name: "Harangi Dam", 
+      distance: "35 km", 
+      duration: "45 mins",
+      image: "https://images.unsplash.com/photo-1439066615861-d1af74d74000?q=80&w=400&auto=format&fit=crop",
+      description: "Scenic dam with boating facilities"
+    },
+    { 
+      name: "Nagarahole", 
+      distance: "67 km", 
+      duration: "1 hr 37 mins",
+      image: "https://images.unsplash.com/photo-1549366021-9f761d040a94?q=80&w=400&auto=format&fit=crop",
+      description: "National park with wildlife safari"
+    }
   ];
 
   const reviews = [
@@ -108,7 +162,7 @@ const Index = () => {
             <Button size="lg" className="bg-green-600 hover:bg-green-700 text-white px-8 py-4 text-lg rounded-full transition-all duration-300 hover:scale-105">
               Book Now
             </Button>
-            <Button size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-green-800 px-8 py-4 text-lg rounded-full transition-all duration-300 hover:scale-105">
+            <Button size="lg" className="bg-white/20 backdrop-blur-sm border-2 border-white text-white hover:bg-white hover:text-green-800 px-8 py-4 text-lg rounded-full transition-all duration-300 hover:scale-105">
               View Rooms
             </Button>
           </div>
@@ -195,19 +249,27 @@ const Index = () => {
           </h2>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {attractions.map((attraction, index) => (
-              <Card key={index} className="p-6 hover:shadow-lg transition-all duration-300 hover:scale-105 rounded-2xl border-0 bg-white/80 backdrop-blur-sm">
-                <div className="flex items-center justify-between mb-2">
-                  <h3 className="font-semibold text-green-800 text-lg">{attraction.name}</h3>
-                  <MapPin className="w-5 h-5 text-green-600" />
+              <Card key={index} className="overflow-hidden hover:shadow-xl transition-all duration-300 hover:scale-105 rounded-2xl border-0 bg-white/90 backdrop-blur-sm group cursor-pointer">
+                <div className="relative overflow-hidden">
+                  <img 
+                    src={attraction.image}
+                    alt={attraction.name}
+                    className="w-full h-48 object-cover transition-transform duration-500 group-hover:scale-110"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
+                  <div className="absolute bottom-4 left-4 text-white">
+                    <div className="flex items-center gap-2 text-sm">
+                      <MapPin className="w-4 h-4" />
+                      <span className="font-medium">{attraction.distance}</span>
+                      <span>•</span>
+                      <span>{attraction.duration}</span>
+                    </div>
+                  </div>
                 </div>
-                <div className="space-y-1 text-gray-600">
-                  <p className="flex items-center gap-2">
-                    📍 <span>{attraction.distance}</span>
-                  </p>
-                  <p className="flex items-center gap-2">
-                    ⏱️ <span>{attraction.duration}</span>
-                  </p>
-                </div>
+                <CardContent className="p-6">
+                  <h3 className="font-bold text-green-800 text-lg mb-2">{attraction.name}</h3>
+                  <p className="text-gray-600 text-sm leading-relaxed">{attraction.description}</p>
+                </CardContent>
               </Card>
             ))}
           </div>
@@ -265,25 +327,40 @@ const Index = () => {
           </h2>
           <div className="grid lg:grid-cols-2 gap-12">
             <div>
-              <h3 className="text-2xl font-semibold text-green-800 mb-6">Get in Touch</h3>
-              <div className="space-y-4 mb-8">
-                <div className="flex items-center gap-3">
-                  <Phone className="w-5 h-5 text-green-600" />
-                  <span>+91 98765 43210</span>
+              <h3 className="text-2xl font-semibold text-green-800 mb-6">Talk To Us</h3>
+              <div className="space-y-6 mb-8">
+                <div className="flex items-start gap-4">
+                  <div className="bg-green-100 p-3 rounded-full">
+                    <Mail className="w-5 h-5 text-green-600" />
+                  </div>
+                  <div>
+                    <p className="font-medium text-gray-800 mb-1">EMAIL</p>
+                    <p className="text-gray-600">coorghomestaykuppendare@gmail.com</p>
+                  </div>
                 </div>
-                <div className="flex items-center gap-3">
-                  <MapPin className="w-5 h-5 text-green-600" />
-                  <span>Kuppendare Estate, Madikeri, Coorg - 571201</span>
+                <div className="flex items-start gap-4">
+                  <div className="bg-green-100 p-3 rounded-full">
+                    <Phone className="w-5 h-5 text-green-600" />
+                  </div>
+                  <div>
+                    <p className="font-medium text-gray-800 mb-1">PHONE NUMBER</p>
+                    <p className="text-gray-600">+91 80502 69791</p>
+                  </div>
                 </div>
-                <div className="flex items-center gap-3">
-                  <MessageCircle className="w-5 h-5 text-green-600" />
-                  <span>info@kuppendarehomestay.com</span>
+                <div className="flex items-start gap-4">
+                  <div className="bg-green-100 p-3 rounded-full">
+                    <MapPin className="w-5 h-5 text-green-600" />
+                  </div>
+                  <div>
+                    <p className="font-medium text-gray-800 mb-1">ADDRESS</p>
+                    <p className="text-gray-600">Block no.10, Webs Rd, opposite to Patrika bhavan, near to Cauvery Hall, Bhagavathi Nagar, Madikeri, Karnataka 571201</p>
+                  </div>
                 </div>
               </div>
               
               <div className="bg-gradient-to-br from-green-50 to-amber-50 p-6 rounded-2xl">
                 <iframe
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d31198.77!2d75.737!3d12.424!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ba5ee0e8d0b7699%3A0x6f5e6b6b5b6b5b6b!2sMadikeri%2C%20Karnataka!5e0!3m2!1sen!2sin!4v1635000000000!5m2!1sen!2sin"
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3887.5589774!2d75.7355779!3d12.4243983!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ba5ee0e8d0b7699%3A0x6f5e6b6b5b6b5b6b!2sWebs%20Rd%2C%20Bhagavathi%20Nagar%2C%20Madikeri%2C%20Karnataka%20571201!5e0!3m2!1sen!2sin!4v1635000000000!5m2!1sen!2sin"
                   width="100%"
                   height="200"
                   style={{ border: 0 }}
