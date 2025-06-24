@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { Phone, MapPin, MessageCircle, Calendar, Users, Star, Wifi, Car, Coffee, Thermometer, Mail } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -416,6 +415,17 @@ const Index = () => {
           </Button>
         </div>
       </div>
+
+      {/* WhatsApp Floating Button */}
+      <a
+        href="https://api.whatsapp.com/send/?phone=918050269791&text=Hi+%2AMy+Blog%2A%21+I+need+more+info+about+My+Blog+https%3A%2F%2Fkuppendarecoorg.com%2F&type=phone_number&app_absent=0"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="fixed bottom-20 md:bottom-6 right-6 z-50 bg-green-500 hover:bg-green-600 text-white rounded-full p-4 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-110 animate-bounce"
+        aria-label="Contact us on WhatsApp"
+      >
+        <MessageCircle className="w-6 h-6" />
+      </a>
 
       {/* Footer */}
       <footer className="bg-green-800 text-white py-12 px-4 md:px-8 lg:px-16">
