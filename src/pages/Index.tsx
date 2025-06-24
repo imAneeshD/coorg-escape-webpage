@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 import { Phone, MapPin, MessageCircle, Calendar, Users, Star, Wifi, Car, Coffee, Thermometer, Mail } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -13,6 +14,39 @@ const Index = () => {
     "https://images.unsplash.com/photo-1501854140801-50d01698950b?q=80&w=2600&auto=format&fit=crop",
     "https://images.unsplash.com/photo-1482938289607-e9573fc25ebb?q=80&w=2340&auto=format&fit=crop",
     "https://images.unsplash.com/photo-1472396961693-142e6e269027?q=80&w=2340&auto=format&fit=crop"
+  ];
+
+  const roomGalleryImages = [
+    {
+      src: "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?q=80&w=800&auto=format&fit=crop",
+      alt: "Deluxe Garden View Room",
+      title: "Deluxe Garden View"
+    },
+    {
+      src: "https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?q=80&w=800&auto=format&fit=crop",
+      alt: "Premium Coffee Estate Room",
+      title: "Premium Coffee Estate"
+    },
+    {
+      src: "https://images.unsplash.com/photo-1564013799919-ab600027ffc6?q=80&w=800&auto=format&fit=crop",
+      alt: "Family Cottage Interior",
+      title: "Family Cottage"
+    },
+    {
+      src: "https://images.unsplash.com/photo-1631049307264-da0ec9d70304?q=80&w=800&auto=format&fit=crop",
+      alt: "Modern Bathroom",
+      title: "Modern Amenities"
+    },
+    {
+      src: "https://images.unsplash.com/photo-1578683010236-d716f9a3f461?q=80&w=800&auto=format&fit=crop",
+      alt: "Cozy Sitting Area",
+      title: "Relaxation Space"
+    },
+    {
+      src: "https://images.unsplash.com/photo-1566665797739-1674de7a421a?q=80&w=800&auto=format&fit=crop",
+      alt: "Dining Area",
+      title: "Dining Experience"
+    }
   ];
 
   const rooms = [
@@ -161,7 +195,7 @@ const Index = () => {
             <Button size="lg" className="bg-green-600 hover:bg-green-700 text-white px-8 py-4 text-lg rounded-full transition-all duration-300 hover:scale-105">
               Book Now
             </Button>
-            <Button size="lg" className="bg-white/20 backdrop-blur-sm border-2 border-white text-white hover:bg-white hover:text-green-800 px-8 py-4 text-lg rounded-full transition-all duration-300 hover:scale-105">
+            <Button size="lg" className="bg-black/30 backdrop-blur-sm border-2 border-white text-white hover:bg-white hover:text-green-800 px-8 py-4 text-lg rounded-full transition-all duration-300 hover:scale-105">
               View Rooms
             </Button>
           </div>
@@ -240,8 +274,94 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Tourist Attractions */}
+      {/* Room Gallery Section */}
       <section className="py-20 px-4 md:px-8 lg:px-16 bg-gradient-to-br from-green-50 to-amber-50">
+        <div className="max-w-7xl mx-auto">
+          <h2 className="text-3xl md:text-4xl font-bold text-center text-green-800 mb-12">
+            Our Beautiful Rooms & Spaces
+          </h2>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 h-[600px]">
+            {/* Large featured image */}
+            <div className="col-span-2 row-span-2 relative group overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500">
+              <img 
+                src={roomGalleryImages[0].src}
+                alt={roomGalleryImages[0].alt}
+                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+              <div className="absolute bottom-6 left-6 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                <h3 className="text-xl font-bold mb-2">{roomGalleryImages[0].title}</h3>
+              </div>
+            </div>
+
+            {/* Top right images */}
+            <div className="relative group overflow-hidden rounded-2xl shadow-lg hover:shadow-xl transition-all duration-500">
+              <img 
+                src={roomGalleryImages[1].src}
+                alt={roomGalleryImages[1].alt}
+                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+              <div className="absolute bottom-3 left-3 text-white text-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                <p className="font-semibold">{roomGalleryImages[1].title}</p>
+              </div>
+            </div>
+
+            <div className="relative group overflow-hidden rounded-2xl shadow-lg hover:shadow-xl transition-all duration-500">
+              <img 
+                src={roomGalleryImages[2].src}
+                alt={roomGalleryImages[2].alt}
+                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+              <div className="absolute bottom-3 left-3 text-white text-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                <p className="font-semibold">{roomGalleryImages[2].title}</p>
+              </div>
+            </div>
+
+            {/* Bottom right images */}
+            <div className="relative group overflow-hidden rounded-2xl shadow-lg hover:shadow-xl transition-all duration-500">
+              <img 
+                src={roomGalleryImages[3].src}
+                alt={roomGalleryImages[3].alt}
+                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+              <div className="absolute bottom-3 left-3 text-white text-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                <p className="font-semibold">{roomGalleryImages[3].title}</p>
+              </div>
+            </div>
+
+            <div className="relative group overflow-hidden rounded-2xl shadow-lg hover:shadow-xl transition-all duration-500">
+              <img 
+                src={roomGalleryImages[4].src}
+                alt={roomGalleryImages[4].alt}
+                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+              <div className="absolute bottom-3 left-3 text-white text-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                <p className="font-semibold">{roomGalleryImages[4].title}</p>
+              </div>
+            </div>
+
+            {/* Tall image on the right */}
+            <div className="row-span-2 relative group overflow-hidden rounded-2xl shadow-lg hover:shadow-xl transition-all duration-500">
+              <img 
+                src={roomGalleryImages[5].src}
+                alt={roomGalleryImages[5].alt}
+                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+              <div className="absolute bottom-6 left-4 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                <h3 className="text-lg font-bold">{roomGalleryImages[5].title}</h3>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Tourist Attractions */}
+      <section className="py-20 px-4 md:px-8 lg:px-16 bg-white">
         <div className="max-w-7xl mx-auto">
           <h2 className="text-3xl md:text-4xl font-bold text-center text-green-800 mb-12">
             Top Tourist Attractions Near Us
@@ -270,27 +390,6 @@ const Index = () => {
                   <p className="text-gray-600 text-sm leading-relaxed">{attraction.description}</p>
                 </CardContent>
               </Card>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Photo Gallery */}
-      <section className="py-20 px-4 md:px-8 lg:px-16 bg-white">
-        <div className="max-w-7xl mx-auto">
-          <h2 className="text-3xl md:text-4xl font-bold text-center text-green-800 mb-12">
-            Experience the Beauty
-          </h2>
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
-            {galleryImages.map((image, index) => (
-              <div key={index} className="relative overflow-hidden rounded-2xl group cursor-pointer">
-                <img 
-                  src={image}
-                  alt={`Gallery ${index + 1}`}
-                  className="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-110"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-              </div>
             ))}
           </div>
         </div>
@@ -352,14 +451,14 @@ const Index = () => {
                   </div>
                   <div>
                     <p className="font-medium text-gray-800 mb-1">ADDRESS</p>
-                    <p className="text-gray-600">Block no.10, Webs Rd, opposite to Patrika bhavan, near to Cauvery Hall, Bhagavathi Nagar, Madikeri, Karnataka 571201</p>
+                    <p className="text-gray-600">Block #10 Opp: Patrika Bhavana Near Cauvery Hall Madikeri-571201 Kodagu</p>
                   </div>
                 </div>
               </div>
               
               <div className="bg-gradient-to-br from-green-50 to-amber-50 p-6 rounded-2xl">
                 <iframe
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3887.5589774!2d75.7355779!3d12.4243983!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ba5ee0e8d0b7699%3A0x6f5e6b6b5b6b5b6b!2sWebs%20Rd%2C%20Bhagavathi%20Nagar%2C%20Madikeri%2C%20Karnataka%20571201!5e0!3m2!1sen!2sin!4v1635000000000!5m2!1sen!2sin"
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3887.558977484839!2d75.7355779!3d12.4243983!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ba5ee0e8d0b7699%3A0x123456789abcdef0!2sPatrika%20Bhavan%2C%20Madikeri%2C%20Karnataka%20571201!5e0!3m2!1sen!2sin!4v1635000000000!5m2!1sen!2sin"
                   width="100%"
                   height="200"
                   style={{ border: 0 }}
