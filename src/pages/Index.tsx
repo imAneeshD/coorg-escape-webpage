@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { Phone, MapPin, MessageCircle, Calendar, Users, Star, Wifi, Car, Coffee, Thermometer, Mail } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -166,25 +165,23 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-green-50 to-amber-50">
-      {/* Top Header */}
-      <div className="bg-gradient-to-r from-green-800 to-amber-800 text-white text-center py-3 px-4">
-        <p className="text-sm md:text-base font-medium">
-          Welcome to Kuppendare Homestay in the heart of Coorg! 🌿
-        </p>
-      </div>
-
       {/* Hero Section */}
       <section className="relative h-screen flex items-center justify-center overflow-hidden">
         <div 
           className="absolute inset-0 bg-cover bg-center bg-no-repeat transition-all duration-1000"
           style={{ 
-            backgroundImage: `url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?q=80&w=2340&auto=format&fit=crop')` 
+            backgroundImage: `url('https://images.unsplash.com/photo-1564013799919-ab600027ffc6?q=80&w=2340&auto=format&fit=crop')` 
           }}
         >
           <div className="absolute inset-0 bg-black/40"></div>
         </div>
         
         <div className="relative z-10 text-center text-white px-4 max-w-4xl mx-auto">
+          <div className="bg-green-600/20 backdrop-blur-sm border border-green-400/30 rounded-2xl px-6 py-3 mb-6 inline-block">
+            <p className="text-lg font-medium flex items-center gap-2">
+              Welcome to Kuppendare Homestay in the Heart of Coorg! 🌿
+            </p>
+          </div>
           <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-6 animate-fade-in">
             Your Serene Escape in Coorg Starts Here
           </h1>
