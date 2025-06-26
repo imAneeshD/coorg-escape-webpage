@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 import { Phone, MapPin, MessageCircle, Calendar, Users, Star, Wifi, Car, Coffee, Thermometer, Mail, ChefHat, Droplets } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -248,7 +249,7 @@ const Index = () => {
                   and fully equipped kitchens in every room featuring gas stoves and instant coffee ingredients for your convenience.
                 </p>
                 <p>
-                  Whether you're a family seeking adventure, a couple looking for romance, or a solo traveler 
+                  Whether you're friends seeking adventure, a family looking for quality time together, or a solo traveler 
                   in search of peace, our homestay provides the perfect blend of modern amenities and natural beauty 
                   surrounded by lush coffee plantations.
                 </p>
