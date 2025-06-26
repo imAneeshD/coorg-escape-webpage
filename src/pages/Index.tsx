@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Phone, MapPin, MessageCircle, Calendar, Users, Star, Wifi, Car, Coffee, Thermometer, Mail } from "lucide-react";
+import { Phone, MapPin, MessageCircle, Calendar, Users, Star, Wifi, Car, Coffee, Thermometer, Mail, ChefHat, Droplets } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -53,19 +53,19 @@ const Index = () => {
       name: "Deluxe Garden View",
       price: "₹3,500",
       image: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?q=80&w=800&auto=format&fit=crop",
-      amenities: ["wifi", "hot-water", "food", "parking"]
+      amenities: ["wifi", "hot-water", "kitchen", "cab-service"]
     },
     {
       name: "Premium Coffee Estate",
       price: "₹4,200",
       image: "https://images.unsplash.com/photo-1501854140801-50d01698950b?q=80&w=800&auto=format&fit=crop",
-      amenities: ["wifi", "hot-water", "food", "parking"]
+      amenities: ["wifi", "hot-water", "kitchen", "cab-service"]
     },
     {
       name: "Family Cottage",
       price: "₹5,800",
       image: "https://images.unsplash.com/photo-1482938289607-e9573fc25ebb?q=80&w=800&auto=format&fit=crop",
-      amenities: ["wifi", "hot-water", "food", "parking"]
+      amenities: ["wifi", "hot-water", "kitchen", "cab-service"]
     }
   ];
 
@@ -156,11 +156,34 @@ const Index = () => {
   const getAmenityIcon = (amenity: string) => {
     switch (amenity) {
       case "wifi": return <Wifi className="w-4 h-4" />;
-      case "hot-water": return <Thermometer className="w-4 h-4" />;
-      case "food": return <Coffee className="w-4 h-4" />;
-      case "parking": return <Car className="w-4 h-4" />;
+      case "hot-water": return <Droplets className="w-4 h-4" />;
+      case "kitchen": return <ChefHat className="w-4 h-4" />;
+      case "cab-service": return <Car className="w-4 h-4" />;
       default: return null;
     }
+  };
+
+  const scrollToGallery = () => {
+    const gallerySection = document.getElementById('room-gallery');
+    if (gallerySection) {
+      gallerySection.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
+  const openWhatsApp = (message: string) => {
+    const encodedMessage = encodeURIComponent(message);
+    const whatsappUrl = `https://api.whatsapp.com/send/?phone=918050269791&text=${encodedMessage}&type=phone_number&app_absent=0`;
+    window.open(whatsappUrl, '_blank');
+  };
+
+  const handleBookNow = () => {
+    const message = "Hi *Kuppendare Homestay*! I would like to book a room. Please provide me with availability and more details. https://kuppendarecoorg.com/";
+    openWhatsApp(message);
+  };
+
+  const handleRoomBooking = (roomName: string, price: string) => {
+    const message = `Hi *Kuppendare Homestay*! I'm interested in booking the ${roomName} room (${price}/night). Please provide availability and more details. https://kuppendarecoorg.com/`;
+    openWhatsApp(message);
   };
 
   return (
@@ -189,10 +212,18 @@ const Index = () => {
             Comfort, Nature & Local Culture in the Heart of Madikeri
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center animate-fade-in">
-            <Button size="lg" className="bg-green-600 hover:bg-green-700 text-white px-8 py-4 text-lg rounded-full transition-all duration-300 hover:scale-105">
+            <Button 
+              size="lg" 
+              className="bg-green-600 hover:bg-green-700 text-white px-8 py-4 text-lg rounded-full transition-all duration-300 hover:scale-105"
+              onClick={handleBookNow}
+            >
               Book Now
             </Button>
-            <Button size="lg" className="bg-black/30 backdrop-blur-sm border-2 border-white text-white hover:bg-white hover:text-green-800 px-8 py-4 text-lg rounded-full transition-all duration-300 hover:scale-105">
+            <Button 
+              size="lg" 
+              className="bg-black/30 backdrop-blur-sm border-2 border-white text-white hover:bg-white hover:text-green-800 px-8 py-4 text-lg rounded-full transition-all duration-300 hover:scale-105"
+              onClick={scrollToGallery}
+            >
               View Rooms
             </Button>
           </div>
@@ -209,16 +240,17 @@ const Index = () => {
               </h2>
               <div className="space-y-4 text-gray-700 text-lg leading-relaxed">
                 <p>
-                  Nestled in the heart of Madikeri, Kuppendare Homestay offers an authentic Coorgi experience 
-                  surrounded by lush coffee plantations and misty hills.
+                  At Kuppendare Homestay, we provide exceptional 24/7 support from our dedicated staff and manager, 
+                  ensuring your comfort throughout your stay in the heart of Madikeri.
                 </p>
                 <p>
-                  Wake up to the aroma of fresh coffee, enjoy traditional Coorgi cuisine prepared with love, 
-                  and spend your evenings around a warm bonfire under the starlit sky.
+                  Enjoy complimentary high-speed WiFi, our tied-up 24/7 cab services for convenient local transportation, 
+                  and fully equipped kitchens in every room featuring gas stoves and instant coffee ingredients for your convenience.
                 </p>
                 <p>
                   Whether you're a family seeking adventure, a couple looking for romance, or a solo traveler 
-                  in search of peace, our homestay provides the perfect blend of comfort and nature.
+                  in search of peace, our homestay provides the perfect blend of modern amenities and natural beauty 
+                  surrounded by lush coffee plantations.
                 </p>
               </div>
             </div>
@@ -261,7 +293,10 @@ const Index = () => {
                       </div>
                     ))}
                   </div>
-                  <Button className="w-full bg-green-600 hover:bg-green-700 rounded-full">
+                  <Button 
+                    className="w-full bg-green-600 hover:bg-green-700 rounded-full"
+                    onClick={() => handleRoomBooking(room.name, room.price)}
+                  >
                     Book This Room
                   </Button>
                 </CardContent>
@@ -272,7 +307,7 @@ const Index = () => {
       </section>
 
       {/* Room Gallery Section */}
-      <section className="py-20 px-4 md:px-8 lg:px-16 bg-gradient-to-br from-green-50 to-amber-50">
+      <section id="room-gallery" className="py-20 px-4 md:px-8 lg:px-16 bg-gradient-to-br from-green-50 to-amber-50">
         <div className="max-w-7xl mx-auto">
           <h2 className="text-3xl md:text-4xl font-bold text-center text-green-800 mb-12">
             Our Beautiful Rooms & Spaces
@@ -498,15 +533,26 @@ const Index = () => {
       {/* Sticky CTA for Mobile */}
       <div className="fixed bottom-0 left-0 right-0 bg-white border-t shadow-lg p-4 md:hidden z-50">
         <div className="flex gap-2">
-          <Button className="flex-1 bg-green-600 hover:bg-green-700 rounded-full">
+          <Button 
+            className="flex-1 bg-green-600 hover:bg-green-700 rounded-full"
+            onClick={() => window.open('tel:+918050269791', '_self')}
+          >
             <Phone className="w-4 h-4 mr-2" />
             Call Now
           </Button>
-          <Button variant="outline" className="flex-1 rounded-full">
+          <Button 
+            variant="outline" 
+            className="flex-1 rounded-full"
+            onClick={() => openWhatsApp("Hi *Kuppendare Homestay*! I need more info about Kuppendare Homestay https://kuppendarecoorg.com/")}
+          >
             <MessageCircle className="w-4 h-4 mr-2" />
             WhatsApp
           </Button>
-          <Button variant="outline" className="rounded-full p-3">
+          <Button 
+            variant="outline" 
+            className="rounded-full p-3"
+            onClick={() => window.open('https://maps.google.com/?q=Block+%2310+Opp:+Patrika+Bhavana+Near+Cauvery+Hall+Madikeri-571201+Kodagu', '_blank')}
+          >
             <MapPin className="w-4 h-4" />
           </Button>
         </div>
