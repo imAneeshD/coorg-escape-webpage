@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { Phone, MapPin, MessageCircle, Calendar, Users, Star, Wifi, Car, Coffee, Thermometer, Mail, ChefHat, Droplets } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -75,7 +74,7 @@ const Index = () => {
       name: "Abbey Falls", 
       distance: "6.3 km", 
       duration: "15 mins",
-      image: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?q=80&w=400&auto=format&fit=crop",
+      image: "/lovable-uploads/c2b17db7-57db-403f-a963-071b7e6a2c0e.png",
       description: "Spectacular waterfall amidst coffee plantations"
     },
     { 
