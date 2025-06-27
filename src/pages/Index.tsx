@@ -1,15 +1,393 @@
 import { useState, useEffect } from "react";
-import { Phone, MapPin, MessageCircle, Calendar, Users, Star, Wifi, Car, Coffee, Thermometer, Mail, ChefHat, Droplets, Cloud, Sun } from "lucide-react";
+import { Phone, MapPin, MessageCircle, Calendar, Users, Star, Wifi, Car, Thermometer, Mail, ChefHat, Droplets, Cloud, Sun } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 
+const HeroSection = ({ weather, getWeatherIcon, handleBookNow, scrollToGallery }) => (
+  <section className="relative h-screen flex items-center justify-center overflow-hidden">
+    <div 
+      className="absolute inset-0 bg-cover bg-center bg-no-repeat transition-all duration-1000"
+      style={{ 
+        backgroundImage: `url('/lovable-uploads/f90d3ee3-3394-4bcb-8fc4-904e6253b857.png')` 
+      }}
+    >
+      <div className="absolute inset-0 bg-black/60"></div>
+    </div>
+    
+    <div className="relative z-10 text-center text-white px-4 max-w-4xl mx-auto">
+      <div className="bg-green-600/20 backdrop-blur-sm border border-green-400/30 rounded-xl px-3 py-1 mb-4 inline-block">
+        <p className="text-xs font-medium flex items-center gap-2">
+          Welcome to Kuppendare Homestay in the Heart of Coorg! 🌿
+        </p>
+      </div>
+
+      {/* Weather Widget */}
+      {weather && (
+        <div className="bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl p-4 mb-6 max-w-4xl mx-auto">
+          <h3 className="text-lg font-semibold mb-3 flex items-center gap-2">
+            <Thermometer className="w-5 h-5" />
+            Madikeri Weather - Next 7 Days
+          </h3>
+          <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-3">
+            {weather.list.slice(0, 7).map((day, index) => (
+              <div key={index} className="bg-white/10 rounded-lg p-3 text-center backdrop-blur-sm">
+                <div className="text-xs opacity-80 mb-1">
+                  {new Date(day.dt_txt || Date.now() + index * 24 * 60 * 60 * 1000).toLocaleDateString('en-US', { weekday: 'short' })}
+                </div>
+                <div className="flex justify-center mb-2">
+                  {getWeatherIcon(day.weather?.[0]?.main || 'Clear')}
+                </div>
+                <div className="text-lg font-bold">{Math.round(day.main?.temp || 22)}°C</div>
+                <div className="text-xs opacity-75">
+                  {Math.round(day.main?.temp_min || 18)}° / {Math.round(day.main?.temp_max || 25)}°
+                </div>
+                <div className="text-xs opacity-70 mt-1 capitalize">
+                  {day.weather?.[0]?.description || 'Clear sky'}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+
+      <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-6 animate-fade-in">
+        Your Serene Escape in Coorg Starts Here
+      </h1>
+      <p className="text-xl md:text-2xl mb-8 opacity-90 animate-fade-in">
+        Comfort, Nature & Local Culture in the Heart of Madikeri
+      </p>
+      <div className="flex flex-col sm:flex-row gap-4 justify-center animate-fade-in">
+        <Button 
+          size="lg" 
+          className="bg-green-600 hover:bg-green-700 text-white px-8 py-4 text-lg rounded-full transition-all duration-300 hover:scale-105"
+          onClick={handleBookNow}
+        >
+          Book Now
+        </Button>
+        <Button 
+          size="lg" 
+          className="bg-black/30 backdrop-blur-sm border-2 border-white text-white hover:bg-white hover:text-green-800 px-8 py-4 text-lg rounded-full transition-all duration-300 hover:scale-105"
+          onClick={scrollToGallery}
+        >
+          View Rooms
+        </Button>
+      </div>
+    </div>
+  </section>
+);
+
+const AboutSection = () => (
+  <section className="py-20 px-4 md:px-8 lg:px-16">
+    <div className="max-w-7xl mx-auto">
+      <div className="grid lg:grid-cols-2 gap-12 items-center">
+        <div className="order-2 lg:order-1">
+          <h2 className="text-3xl md:text-4xl font-bold text-green-800 mb-6">
+            Experience Authentic Coorgi Hospitality
+          </h2>
+          <div className="space-y-4 text-gray-700 text-lg leading-relaxed">
+            <p>
+              At Kuppendare Homestay, we provide exceptional 24/7 support from our dedicated staff and manager, 
+              ensuring your comfort throughout your stay in the heart of Madikeri.
+            </p>
+            <p>
+              Enjoy complimentary high-speed WiFi, our tied-up 24/7 cab services for convenient local transportation, 
+              and fully equipped kitchens in every room featuring gas stoves and instant coffee ingredients for your convenience.
+            </p>
+            <p>
+              Whether you're friends seeking adventure, a family looking for quality time together, or a solo traveler 
+              in search of peace, our homestay provides the perfect blend of modern amenities and natural beauty 
+              surrounded by lush coffee plantations.
+            </p>
+          </div>
+        </div>
+        <div className="order-1 lg:order-2">
+          <img 
+            src="/lovable-uploads/f90d3ee3-3394-4bcb-8fc4-904e6253b857.png"
+            alt="Kuppendare Homestay exterior"
+            className="rounded-3xl shadow-2xl w-full h-[400px] object-cover hover:scale-105 transition-transform duration-500"
+          />
+        </div>
+      </div>
+    </div>
+  </section>
+);
+
+const RoomsSection = ({ rooms, getAmenityIcon, handleRoomBooking }) => (
+  <section className="py-20 px-4 md:px-8 lg:px-16 bg-white">
+    <div className="max-w-7xl mx-auto">
+      <h2 className="text-3xl md:text-4xl font-bold text-center text-green-800 mb-12">
+        Comfortable Rooms & Modern Amenities
+      </h2>
+      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {rooms.map((room, index) => (
+          <Card key={index} className="overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 hover:scale-105 rounded-2xl">
+            <div className="relative">
+              <img 
+                src={room.image}
+                alt={room.name}
+                className="w-full h-64 object-cover"
+              />
+            </div>
+            <CardContent className="p-6">
+              <h3 className="text-xl font-bold text-green-800 mb-4">{room.name}</h3>
+              <div className="flex gap-3 mb-4">
+                {room.amenities.map((amenity, idx) => (
+                  <div key={idx} className="bg-green-100 p-2 rounded-full text-green-600">
+                    {getAmenityIcon(amenity)}
+                  </div>
+                ))}
+              </div>
+              <Button 
+                className="w-full bg-green-600 hover:bg-green-700 rounded-full"
+                onClick={() => handleRoomBooking(room.name)}
+              >
+                Book This Room
+              </Button>
+            </CardContent>
+          </Card>
+        ))}
+      </div>
+    </div>
+  </section>
+);
+
+const GallerySection = ({ roomGalleryImages }) => (
+  <section id="room-gallery" className="py-20 px-4 md:px-8 lg:px-16 bg-gradient-to-br from-green-50 to-amber-50">
+    <div className="max-w-7xl mx-auto">
+      <h2 className="text-3xl md:text-4xl font-bold text-center text-green-800 mb-12">
+        Our Beautiful Rooms & Spaces
+      </h2>
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
+        {/* Large featured image */}
+        <div className="col-span-2 row-span-2 relative group overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 h-[400px]">
+          <img 
+            src={roomGalleryImages[0].src}
+            alt={roomGalleryImages[0].alt}
+            className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+          <div className="absolute bottom-6 left-6 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+            <h3 className="text-xl font-bold mb-2">{roomGalleryImages[0].title}</h3>
+          </div>
+        </div>
+
+        {/* Top right images */}
+        <div className="relative group overflow-hidden rounded-2xl shadow-lg hover:shadow-xl transition-all duration-500 h-[190px]">
+          <img 
+            src={roomGalleryImages[1].src}
+            alt={roomGalleryImages[1].alt}
+            className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+          <div className="absolute bottom-3 left-3 text-white text-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+            <p className="font-semibold">{roomGalleryImages[1].title}</p>
+          </div>
+        </div>
+
+        <div className="relative group overflow-hidden rounded-2xl shadow-lg hover:shadow-xl transition-all duration-500 h-[190px]">
+          <img 
+            src={roomGalleryImages[2].src}
+            alt={roomGalleryImages[2].alt}
+            className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+          <div className="absolute bottom-3 left-3 text-white text-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+            <p className="font-semibold">{roomGalleryImages[2].title}</p>
+          </div>
+        </div>
+
+        {/* Bottom right images */}
+        <div className="relative group overflow-hidden rounded-2xl shadow-lg hover:shadow-xl transition-all duration-500 h-[190px]">
+          <img 
+            src={roomGalleryImages[3].src}
+            alt={roomGalleryImages[3].alt}
+            className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+          <div className="absolute bottom-3 left-3 text-white text-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+            <p className="font-semibold">{roomGalleryImages[3].title}</p>
+          </div>
+        </div>
+
+        <div className="relative group overflow-hidden rounded-2xl shadow-lg hover:shadow-xl transition-all duration-500 h-[190px]">
+          <img 
+            src={roomGalleryImages[4].src}
+            alt={roomGalleryImages[4].alt}
+            className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+          <div className="absolute bottom-3 left-3 text-white text-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+            <p className="font-semibold">{roomGalleryImages[4].title}</p>
+          </div>
+        </div>
+      </div>
+
+      {/* Additional gallery grid for the new images */}
+      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
+        {roomGalleryImages.slice(5).map((image, index) => (
+          <div key={index + 5} className="relative group overflow-hidden rounded-2xl shadow-lg hover:shadow-xl transition-all duration-500 h-[200px]">
+            <img 
+              src={image.src}
+              alt={image.alt}
+              className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+            <div className="absolute bottom-4 left-4 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+              <h3 className="text-sm font-bold">{image.title}</h3>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+);
+
+const AttractionsSection = ({ attractions }) => (
+  <section className="py-20 px-4 md:px-8 lg:px-16 bg-white">
+    <div className="max-w-7xl mx-auto">
+      <h2 className="text-3xl md:text-4xl font-bold text-center text-green-800 mb-12">
+        Top Tourist Attractions Near Us
+      </h2>
+      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {attractions.map((attraction, index) => (
+          <Card key={index} className="overflow-hidden hover:shadow-xl transition-all duration-300 hover:scale-105 rounded-2xl border-0 bg-white/90 backdrop-blur-sm group cursor-pointer">
+            <div className="relative overflow-hidden">
+              <img 
+                src={attraction.image}
+                alt={attraction.name}
+                className="w-full h-48 object-cover transition-transform duration-500 group-hover:scale-110"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
+              <div className="absolute bottom-4 left-4 text-white">
+                <div className="flex items-center gap-2 text-sm">
+                  <MapPin className="w-4 h-4" />
+                  <span className="font-medium">{attraction.distance}</span>
+                  <span>•</span>
+                  <span>{attraction.duration}</span>
+                </div>
+              </div>
+            </div>
+            <CardContent className="p-6">
+              <h3 className="font-bold text-green-800 text-lg mb-2">{attraction.name}</h3>
+              <p className="text-gray-600 text-sm leading-relaxed">{attraction.description}</p>
+            </CardContent>
+          </Card>
+        ))}
+      </div>
+    </div>
+  </section>
+);
+
+const ReviewsSection = ({ reviews }) => (
+  <section className="py-20 px-4 md:px-8 lg:px-16 bg-gradient-to-br from-amber-50 to-green-50">
+    <div className="max-w-4xl mx-auto">
+      <h2 className="text-3xl md:text-4xl font-bold text-center text-green-800 mb-12">
+        What Our Guests Say
+      </h2>
+      <div className="grid md:grid-cols-3 gap-8">
+        {reviews.map((review, index) => (
+          <Card key={index} className="p-6 text-center hover:shadow-lg transition-all duration-300 hover:scale-105 rounded-2xl border-0 bg-white/80 backdrop-blur-sm">
+            <div className="flex justify-center mb-4">
+              {[...Array(review.rating)].map((_, i) => (
+                <Star key={i} className="w-5 h-5 fill-yellow-400 text-yellow-400" />
+              ))}
+            </div>
+            <p className="text-gray-700 mb-4 italic">"{review.text}"</p>
+            <p className="font-semibold text-green-800">- {review.name}</p>
+          </Card>
+        ))}
+      </div>
+    </div>
+  </section>
+);
+
+const ContactSection = ({ openWhatsApp }) => (
+  <section className="py-20 px-4 md:px-8 lg:px-16 bg-white">
+    <div className="max-w-6xl mx-auto">
+      <h2 className="text-3xl md:text-4xl font-bold text-center text-green-800 mb-12">
+        Plan Your Perfect Stay
+      </h2>
+      <div className="grid lg:grid-cols-2 gap-12">
+        <div>
+          <h3 className="text-2xl font-semibold text-green-800 mb-6">Talk To Us</h3>
+          <div className="space-y-6 mb-8">
+            <div className="flex items-start gap-4">
+              <div className="bg-green-100 p-3 rounded-full">
+                <Mail className="w-5 h-5 text-green-600" />
+              </div>
+              <div>
+                <p className="font-medium text-gray-800 mb-1">EMAIL</p>
+                <p className="text-gray-600">coorghomestaykuppendare@gmail.com</p>
+              </div>
+            </div>
+            <div className="flex items-start gap-4">
+              <div className="bg-green-100 p-3 rounded-full">
+                <Phone className="w-5 h-5 text-green-600" />
+              </div>
+              <div>
+                <p className="font-medium text-gray-800 mb-1">PHONE NUMBER</p>
+                <p className="text-gray-600">+91 80502 69791</p>
+              </div>
+            </div>
+            <div className="flex items-start gap-4">
+              <div className="bg-green-100 p-3 rounded-full">
+                <MapPin className="w-5 h-5 text-green-600" />
+              </div>
+              <div>
+                <p className="font-medium text-gray-800 mb-1">ADDRESS</p>
+                <p className="text-gray-600">Block #10 Opp: Patrika Bhavana Near Cauvery Hall Madikeri-571201 Kodagu</p>
+              </div>
+            </div>
+          </div>
+          
+          <div className="bg-gradient-to-br from-green-50 to-amber-50 p-6 rounded-2xl">
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3887.558977484839!2d75.7355779!3d12.4243983!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ba5ee0e8d0b7699%3A0x123456789abcdef0!2sPatrika%20Bhavan%2C%20Madikeri%2C%20Karnataka%20571201!5e0!3m2!1sen!2sin!4v1635000000000!5m2!1sen!2sin"
+              width="100%"
+              height="200"
+              style={{ border: 0 }}
+              allowFullScreen={false}
+              loading="lazy"
+              className="rounded-xl"
+            ></iframe>
+          </div>
+        </div>
+        
+        <div>
+          <Card className="p-6 rounded-2xl shadow-lg">
+            <h3 className="text-2xl font-semibold text-green-800 mb-6">Quick Booking</h3>
+            <form className="space-y-4">
+              <div className="grid md:grid-cols-2 gap-4">
+                <Input placeholder="Your Name" className="rounded-xl" />
+                <Input placeholder="Phone Number" className="rounded-xl" />
+              </div>
+              <div className="grid md:grid-cols-2 gap-4">
+                <div className="relative">
+                  <Calendar className="absolute left-3 top-3 w-4 h-4 text-gray-400" />
+                  <Input type="date" className="pl-10 rounded-xl" />
+                </div>
+                <div className="relative">
+                  <Users className="absolute left-3 top-3 w-4 h-4 text-gray-400" />
+                  <Input placeholder="Number of Guests" className="pl-10 rounded-xl" />
+                </div>
+              </div>
+              <Textarea placeholder="Special requests or message" className="rounded-xl" />
+              <Button className="w-full bg-green-600 hover:bg-green-700 rounded-xl py-3 text-lg">
+                Send Booking Request
+              </Button>
+            </form>
+          </Card>
+        </div>
+      </div>
+    </div>
+  </section>
+);
+
 const Index = () => {
-  const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [weather, setWeather] = useState(null);
 
-  // Updated gallery images with the new room photos
   const galleryImages = [
     "/lovable-uploads/60b4c27a-794d-43ba-b99a-4cf1dc3bb1c1.png",
     "/lovable-uploads/cd2641aa-8c73-4552-807b-3f33a59bfbe7.png",
@@ -47,25 +425,42 @@ const Index = () => {
       src: "/lovable-uploads/f90d3ee3-3394-4bcb-8fc4-904e6253b857.png",
       alt: "Homestay Exterior",
       title: "Homestay Building"
+    },
+    {
+      src: "/lovable-uploads/2133ed45-5fab-42b3-b28d-28e9fe0cc7ab.png",
+      alt: "Entrance with Welcome Mat",
+      title: "Warm Welcome"
+    },
+    {
+      src: "/lovable-uploads/f9636ad7-c1df-4759-b639-73e0671be3c9.png",
+      alt: "Comfortable Bedroom",
+      title: "Restful Sleep"
+    },
+    {
+      src: "/lovable-uploads/860c9695-273b-4bd2-a2ad-cd83e9cdf552.png",
+      alt: "Elegant Room Design",
+      title: "Modern Comfort"
+    },
+    {
+      src: "/lovable-uploads/5c2f0e77-7911-47de-be80-4fad8fa4fc5a.png",
+      alt: "Spacious Living Area",
+      title: "Living Space"
     }
   ];
 
   const rooms = [
     {
       name: "Deluxe Garden View",
-      price: "₹3,500",
       image: "/lovable-uploads/60b4c27a-794d-43ba-b99a-4cf1dc3bb1c1.png",
       amenities: ["wifi", "hot-water", "kitchen", "cab-service"]
     },
     {
       name: "Premium Coffee Estate",
-      price: "₹4,200",
       image: "/lovable-uploads/55bcf1c3-26b5-4c1a-a045-78a65bcc1d34.png",
       amenities: ["wifi", "hot-water", "kitchen", "cab-service"]
     },
     {
       name: "Family Cottage",
-      price: "₹5,800",
       image: "/lovable-uploads/ed4528ea-633a-4eab-8be8-f2a165977ea9.png",
       amenities: ["wifi", "hot-water", "kitchen", "cab-service"]
     }
@@ -155,7 +550,6 @@ const Index = () => {
     }
   ];
 
-  // Fetch weather data for Madikeri
   useEffect(() => {
     const fetchWeather = async () => {
       try {
@@ -215,8 +609,8 @@ const Index = () => {
     openWhatsApp(message);
   };
 
-  const handleRoomBooking = (roomName: string, price: string) => {
-    const message = `Hi *Kuppendare Homestay*! I'm interested in booking the ${roomName} room (${price}/night). Please provide availability and more details. https://kuppendarecoorg.com/`;
+  const handleRoomBooking = (roomName: string) => {
+    const message = `Hi *Kuppendare Homestay*! I'm interested in booking the ${roomName} room. Please provide availability and more details. https://kuppendarecoorg.com/`;
     openWhatsApp(message);
   };
 
@@ -231,377 +625,22 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-green-50 to-amber-50">
-      {/* Hero Section */}
-      <section className="relative h-screen flex items-center justify-center overflow-hidden">
-        <div 
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat transition-all duration-1000"
-          style={{ 
-            backgroundImage: `url('https://images.unsplash.com/photo-1564013799919-ab600027ffc6?q=80&w=2340&auto=format&fit=crop')` 
-          }}
-        >
-          <div className="absolute inset-0 bg-black/40"></div>
-        </div>
-        
-        <div className="relative z-10 text-center text-white px-4 max-w-4xl mx-auto">
-          <div className="bg-green-600/20 backdrop-blur-sm border border-green-400/30 rounded-xl px-4 py-2 mb-4 inline-block">
-            <p className="text-sm font-medium flex items-center gap-2">
-              Welcome to Kuppendare Homestay in the Heart of Coorg! 🌿
-            </p>
-          </div>
-
-          {/* Weather Widget */}
-          {weather && (
-            <div className="bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl p-4 mb-6 max-w-4xl mx-auto">
-              <h3 className="text-lg font-semibold mb-3 flex items-center gap-2">
-                <Thermometer className="w-5 h-5" />
-                Madikeri Weather - Next 7 Days
-              </h3>
-              <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-3">
-                {weather.list.slice(0, 7).map((day, index) => (
-                  <div key={index} className="bg-white/10 rounded-lg p-3 text-center backdrop-blur-sm">
-                    <div className="text-xs opacity-80 mb-1">
-                      {new Date(day.dt_txt || Date.now() + index * 24 * 60 * 60 * 1000).toLocaleDateString('en-US', { weekday: 'short' })}
-                    </div>
-                    <div className="flex justify-center mb-2">
-                      {getWeatherIcon(day.weather?.[0]?.main || 'Clear')}
-                    </div>
-                    <div className="text-lg font-bold">{Math.round(day.main?.temp || 22)}°C</div>
-                    <div className="text-xs opacity-75">
-                      {Math.round(day.main?.temp_min || 18)}° / {Math.round(day.main?.temp_max || 25)}°
-                    </div>
-                    <div className="text-xs opacity-70 mt-1 capitalize">
-                      {day.weather?.[0]?.description || 'Clear sky'}
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          )}
-
-          <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-6 animate-fade-in">
-            Your Serene Escape in Coorg Starts Here
-          </h1>
-          <p className="text-xl md:text-2xl mb-8 opacity-90 animate-fade-in">
-            Comfort, Nature & Local Culture in the Heart of Madikeri
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center animate-fade-in">
-            <Button 
-              size="lg" 
-              className="bg-green-600 hover:bg-green-700 text-white px-8 py-4 text-lg rounded-full transition-all duration-300 hover:scale-105"
-              onClick={handleBookNow}
-            >
-              Book Now
-            </Button>
-            <Button 
-              size="lg" 
-              className="bg-black/30 backdrop-blur-sm border-2 border-white text-white hover:bg-white hover:text-green-800 px-8 py-4 text-lg rounded-full transition-all duration-300 hover:scale-105"
-              onClick={scrollToGallery}
-            >
-              View Rooms
-            </Button>
-          </div>
-        </div>
-      </section>
-
-      {/* About Section */}
-      <section className="py-20 px-4 md:px-8 lg:px-16">
-        <div className="max-w-7xl mx-auto">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <div className="order-2 lg:order-1">
-              <h2 className="text-3xl md:text-4xl font-bold text-green-800 mb-6">
-                Experience Authentic Coorgi Hospitality
-              </h2>
-              <div className="space-y-4 text-gray-700 text-lg leading-relaxed">
-                <p>
-                  At Kuppendare Homestay, we provide exceptional 24/7 support from our dedicated staff and manager, 
-                  ensuring your comfort throughout your stay in the heart of Madikeri.
-                </p>
-                <p>
-                  Enjoy complimentary high-speed WiFi, our tied-up 24/7 cab services for convenient local transportation, 
-                  and fully equipped kitchens in every room featuring gas stoves and instant coffee ingredients for your convenience.
-                </p>
-                <p>
-                  Whether you're friends seeking adventure, a family looking for quality time together, or a solo traveler 
-                  in search of peace, our homestay provides the perfect blend of modern amenities and natural beauty 
-                  surrounded by lush coffee plantations.
-                </p>
-              </div>
-            </div>
-            <div className="order-1 lg:order-2">
-              <img 
-                src="/lovable-uploads/f90d3ee3-3394-4bcb-8fc4-904e6253b857.png"
-                alt="Kuppendare Homestay exterior"
-                className="rounded-3xl shadow-2xl w-full h-[400px] object-cover hover:scale-105 transition-transform duration-500"
-              />
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Rooms & Amenities */}
-      <section className="py-20 px-4 md:px-8 lg:px-16 bg-white">
-        <div className="max-w-7xl mx-auto">
-          <h2 className="text-3xl md:text-4xl font-bold text-center text-green-800 mb-12">
-            Comfortable Rooms & Modern Amenities
-          </h2>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {rooms.map((room, index) => (
-              <Card key={index} className="overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 hover:scale-105 rounded-2xl">
-                <div className="relative">
-                  <img 
-                    src={room.image}
-                    alt={room.name}
-                    className="w-full h-64 object-cover"
-                  />
-                  <div className="absolute top-4 right-4 bg-green-600 text-white px-3 py-1 rounded-full font-semibold">
-                    {room.price}/night
-                  </div>
-                </div>
-                <CardContent className="p-6">
-                  <h3 className="text-xl font-bold text-green-800 mb-4">{room.name}</h3>
-                  <div className="flex gap-3 mb-4">
-                    {room.amenities.map((amenity, idx) => (
-                      <div key={idx} className="bg-green-100 p-2 rounded-full text-green-600">
-                        {getAmenityIcon(amenity)}
-                      </div>
-                    ))}
-                  </div>
-                  <Button 
-                    className="w-full bg-green-600 hover:bg-green-700 rounded-full"
-                    onClick={() => handleRoomBooking(room.name, room.price)}
-                  >
-                    Book This Room
-                  </Button>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Room Gallery Section */}
-      <section id="room-gallery" className="py-20 px-4 md:px-8 lg:px-16 bg-gradient-to-br from-green-50 to-amber-50">
-        <div className="max-w-7xl mx-auto">
-          <h2 className="text-3xl md:text-4xl font-bold text-center text-green-800 mb-12">
-            Our Beautiful Rooms & Spaces
-          </h2>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 h-[600px]">
-            {/* Large featured image */}
-            <div className="col-span-2 row-span-2 relative group overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500">
-              <img 
-                src={roomGalleryImages[0].src}
-                alt={roomGalleryImages[0].alt}
-                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-              <div className="absolute bottom-6 left-6 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                <h3 className="text-xl font-bold mb-2">{roomGalleryImages[0].title}</h3>
-              </div>
-            </div>
-
-            {/* Top right images */}
-            <div className="relative group overflow-hidden rounded-2xl shadow-lg hover:shadow-xl transition-all duration-500">
-              <img 
-                src={roomGalleryImages[1].src}
-                alt={roomGalleryImages[1].alt}
-                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-              <div className="absolute bottom-3 left-3 text-white text-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                <p className="font-semibold">{roomGalleryImages[1].title}</p>
-              </div>
-            </div>
-
-            <div className="relative group overflow-hidden rounded-2xl shadow-lg hover:shadow-xl transition-all duration-500">
-              <img 
-                src={roomGalleryImages[2].src}
-                alt={roomGalleryImages[2].alt}
-                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-              <div className="absolute bottom-3 left-3 text-white text-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                <p className="font-semibold">{roomGalleryImages[2].title}</p>
-              </div>
-            </div>
-
-            {/* Bottom right images */}
-            <div className="relative group overflow-hidden rounded-2xl shadow-lg hover:shadow-xl transition-all duration-500">
-              <img 
-                src={roomGalleryImages[3].src}
-                alt={roomGalleryImages[3].alt}
-                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-              <div className="absolute bottom-3 left-3 text-white text-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                <p className="font-semibold">{roomGalleryImages[3].title}</p>
-              </div>
-            </div>
-
-            <div className="relative group overflow-hidden rounded-2xl shadow-lg hover:shadow-xl transition-all duration-500">
-              <img 
-                src={roomGalleryImages[4].src}
-                alt={roomGalleryImages[4].alt}
-                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-              <div className="absolute bottom-3 left-3 text-white text-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                <p className="font-semibold">{roomGalleryImages[4].title}</p>
-              </div>
-            </div>
-
-            {/* Tall image on the right */}
-            <div className="row-span-2 relative group overflow-hidden rounded-2xl shadow-lg hover:shadow-xl transition-all duration-500">
-              <img 
-                src={roomGalleryImages[5].src}
-                alt={roomGalleryImages[5].alt}
-                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-              <div className="absolute bottom-6 left-4 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                <h3 className="text-lg font-bold">{roomGalleryImages[5].title}</h3>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Tourist Attractions */}
-      <section className="py-20 px-4 md:px-8 lg:px-16 bg-white">
-        <div className="max-w-7xl mx-auto">
-          <h2 className="text-3xl md:text-4xl font-bold text-center text-green-800 mb-12">
-            Top Tourist Attractions Near Us
-          </h2>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {attractions.map((attraction, index) => (
-              <Card key={index} className="overflow-hidden hover:shadow-xl transition-all duration-300 hover:scale-105 rounded-2xl border-0 bg-white/90 backdrop-blur-sm group cursor-pointer">
-                <div className="relative overflow-hidden">
-                  <img 
-                    src={attraction.image}
-                    alt={attraction.name}
-                    className="w-full h-48 object-cover transition-transform duration-500 group-hover:scale-110"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
-                  <div className="absolute bottom-4 left-4 text-white">
-                    <div className="flex items-center gap-2 text-sm">
-                      <MapPin className="w-4 h-4" />
-                      <span className="font-medium">{attraction.distance}</span>
-                      <span>•</span>
-                      <span>{attraction.duration}</span>
-                    </div>
-                  </div>
-                </div>
-                <CardContent className="p-6">
-                  <h3 className="font-bold text-green-800 text-lg mb-2">{attraction.name}</h3>
-                  <p className="text-gray-600 text-sm leading-relaxed">{attraction.description}</p>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Guest Reviews */}
-      <section className="py-20 px-4 md:px-8 lg:px-16 bg-gradient-to-br from-amber-50 to-green-50">
-        <div className="max-w-4xl mx-auto">
-          <h2 className="text-3xl md:text-4xl font-bold text-center text-green-800 mb-12">
-            What Our Guests Say
-          </h2>
-          <div className="grid md:grid-cols-3 gap-8">
-            {reviews.map((review, index) => (
-              <Card key={index} className="p-6 text-center hover:shadow-lg transition-all duration-300 hover:scale-105 rounded-2xl border-0 bg-white/80 backdrop-blur-sm">
-                <div className="flex justify-center mb-4">
-                  {[...Array(review.rating)].map((_, i) => (
-                    <Star key={i} className="w-5 h-5 fill-yellow-400 text-yellow-400" />
-                  ))}
-                </div>
-                <p className="text-gray-700 mb-4 italic">"{review.text}"</p>
-                <p className="font-semibold text-green-800">- {review.name}</p>
-              </Card>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Contact & Booking */}
-      <section className="py-20 px-4 md:px-8 lg:px-16 bg-white">
-        <div className="max-w-6xl mx-auto">
-          <h2 className="text-3xl md:text-4xl font-bold text-center text-green-800 mb-12">
-            Plan Your Perfect Stay
-          </h2>
-          <div className="grid lg:grid-cols-2 gap-12">
-            <div>
-              <h3 className="text-2xl font-semibold text-green-800 mb-6">Talk To Us</h3>
-              <div className="space-y-6 mb-8">
-                <div className="flex items-start gap-4">
-                  <div className="bg-green-100 p-3 rounded-full">
-                    <Mail className="w-5 h-5 text-green-600" />
-                  </div>
-                  <div>
-                    <p className="font-medium text-gray-800 mb-1">EMAIL</p>
-                    <p className="text-gray-600">coorghomestaykuppendare@gmail.com</p>
-                  </div>
-                </div>
-                <div className="flex items-start gap-4">
-                  <div className="bg-green-100 p-3 rounded-full">
-                    <Phone className="w-5 h-5 text-green-600" />
-                  </div>
-                  <div>
-                    <p className="font-medium text-gray-800 mb-1">PHONE NUMBER</p>
-                    <p className="text-gray-600">+91 80502 69791</p>
-                  </div>
-                </div>
-                <div className="flex items-start gap-4">
-                  <div className="bg-green-100 p-3 rounded-full">
-                    <MapPin className="w-5 h-5 text-green-600" />
-                  </div>
-                  <div>
-                    <p className="font-medium text-gray-800 mb-1">ADDRESS</p>
-                    <p className="text-gray-600">Block #10 Opp: Patrika Bhavana Near Cauvery Hall Madikeri-571201 Kodagu</p>
-                  </div>
-                </div>
-              </div>
-              
-              <div className="bg-gradient-to-br from-green-50 to-amber-50 p-6 rounded-2xl">
-                <iframe
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3887.558977484839!2d75.7355779!3d12.4243983!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ba5ee0e8d0b7699%3A0x123456789abcdef0!2sPatrika%20Bhavan%2C%20Madikeri%2C%20Karnataka%20571201!5e0!3m2!1sen!2sin!4v1635000000000!5m2!1sen!2sin"
-                  width="100%"
-                  height="200"
-                  style={{ border: 0 }}
-                  allowFullScreen={false}
-                  loading="lazy"
-                  className="rounded-xl"
-                ></iframe>
-              </div>
-            </div>
-            
-            <div>
-              <Card className="p-6 rounded-2xl shadow-lg">
-                <h3 className="text-2xl font-semibold text-green-800 mb-6">Quick Booking</h3>
-                <form className="space-y-4">
-                  <div className="grid md:grid-cols-2 gap-4">
-                    <Input placeholder="Your Name" className="rounded-xl" />
-                    <Input placeholder="Phone Number" className="rounded-xl" />
-                  </div>
-                  <div className="grid md:grid-cols-2 gap-4">
-                    <div className="relative">
-                      <Calendar className="absolute left-3 top-3 w-4 h-4 text-gray-400" />
-                      <Input type="date" className="pl-10 rounded-xl" />
-                    </div>
-                    <div className="relative">
-                      <Users className="absolute left-3 top-3 w-4 h-4 text-gray-400" />
-                      <Input placeholder="Number of Guests" className="pl-10 rounded-xl" />
-                    </div>
-                  </div>
-                  <Textarea placeholder="Special requests or message" className="rounded-xl" />
-                  <Button className="w-full bg-green-600 hover:bg-green-700 rounded-xl py-3 text-lg">
-                    Send Booking Request
-                  </Button>
-                </form>
-              </Card>
-            </div>
-          </div>
-        </div>
-      </section>
+      <HeroSection 
+        weather={weather} 
+        getWeatherIcon={getWeatherIcon} 
+        handleBookNow={handleBookNow} 
+        scrollToGallery={scrollToGallery} 
+      />
+      <AboutSection />
+      <RoomsSection 
+        rooms={rooms} 
+        getAmenityIcon={getAmenityIcon} 
+        handleRoomBooking={handleRoomBooking} 
+      />
+      <GallerySection roomGalleryImages={roomGalleryImages} />
+      <AttractionsSection attractions={attractions} />
+      <ReviewsSection reviews={reviews} />
+      <ContactSection openWhatsApp={openWhatsApp} />
 
       {/* Sticky CTA for Mobile */}
       <div className="fixed bottom-0 left-0 right-0 bg-white border-t shadow-lg p-4 md:hidden z-50">
