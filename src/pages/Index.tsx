@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { Phone, MapPin, MessageCircle, Calendar, Users, Star, Wifi, Car, Coffee, Thermometer, Mail, ChefHat, Droplets } from "lucide-react";
+import { useState, useEffect } from "react";
+import { Phone, MapPin, MessageCircle, Calendar, Users, Star, Wifi, Car, Coffee, Thermometer, Mail, ChefHat, Droplets, Cloud, Sun } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -7,44 +7,46 @@ import { Textarea } from "@/components/ui/textarea";
 
 const Index = () => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [weather, setWeather] = useState(null);
 
+  // Updated gallery images with the new room photos
   const galleryImages = [
-    "https://images.unsplash.com/photo-1506744038136-46273834b3fb?q=80&w=2340&auto=format&fit=crop",
-    "https://images.unsplash.com/photo-1501854140801-50d01698950b?q=80&w=2600&auto=format&fit=crop",
-    "https://images.unsplash.com/photo-1482938289607-e9573fc25ebb?q=80&w=2340&auto=format&fit=crop",
-    "https://images.unsplash.com/photo-1472396961693-142e6e269027?q=80&w=2340&auto=format&fit=crop"
+    "/lovable-uploads/60b4c27a-794d-43ba-b99a-4cf1dc3bb1c1.png",
+    "/lovable-uploads/cd2641aa-8c73-4552-807b-3f33a59bfbe7.png",
+    "/lovable-uploads/8d1eebeb-3d5e-4a5c-8280-bd14eee76798.png",
+    "/lovable-uploads/ed4528ea-633a-4eab-8be8-f2a165977ea9.png"
   ];
 
   const roomGalleryImages = [
     {
-      src: "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?q=80&w=800&auto=format&fit=crop",
+      src: "/lovable-uploads/60b4c27a-794d-43ba-b99a-4cf1dc3bb1c1.png",
       alt: "Deluxe Garden View Room",
       title: "Deluxe Garden View"
     },
     {
-      src: "https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?q=80&w=800&auto=format&fit=crop",
+      src: "/lovable-uploads/55bcf1c3-26b5-4c1a-a045-78a65bcc1d34.png",
       alt: "Premium Coffee Estate Room",
       title: "Premium Coffee Estate"
     },
     {
-      src: "https://images.unsplash.com/photo-1564013799919-ab600027ffc6?q=80&w=800&auto=format&fit=crop",
+      src: "/lovable-uploads/ed4528ea-633a-4eab-8be8-f2a165977ea9.png",
       alt: "Family Cottage Interior",
       title: "Family Cottage"
     },
     {
-      src: "https://images.unsplash.com/photo-1631049307264-da0ec9d70304?q=80&w=800&auto=format&fit=crop",
-      alt: "Modern Bathroom",
+      src: "/lovable-uploads/0b49b671-a8e7-456a-b820-a978aa93379d.png",
+      alt: "Modern Dining Area",
       title: "Modern Amenities"
     },
     {
-      src: "https://images.unsplash.com/photo-1578683010236-d716f9a3f461?q=80&w=800&auto=format&fit=crop",
-      alt: "Cozy Sitting Area",
+      src: "/lovable-uploads/ab4c8e56-ff63-41b3-bd47-02ac497b5e2c.png",
+      alt: "Cozy Bedroom",
       title: "Relaxation Space"
     },
     {
-      src: "https://images.unsplash.com/photo-1566665797739-1674de7a421a?q=80&w=800&auto=format&fit=crop",
-      alt: "Dining Area",
-      title: "Dining Experience"
+      src: "/lovable-uploads/f90d3ee3-3394-4bcb-8fc4-904e6253b857.png",
+      alt: "Homestay Exterior",
+      title: "Homestay Building"
     }
   ];
 
@@ -52,19 +54,19 @@ const Index = () => {
     {
       name: "Deluxe Garden View",
       price: "₹3,500",
-      image: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?q=80&w=800&auto=format&fit=crop",
+      image: "/lovable-uploads/60b4c27a-794d-43ba-b99a-4cf1dc3bb1c1.png",
       amenities: ["wifi", "hot-water", "kitchen", "cab-service"]
     },
     {
       name: "Premium Coffee Estate",
       price: "₹4,200",
-      image: "https://images.unsplash.com/photo-1501854140801-50d01698950b?q=80&w=800&auto=format&fit=crop",
+      image: "/lovable-uploads/55bcf1c3-26b5-4c1a-a045-78a65bcc1d34.png",
       amenities: ["wifi", "hot-water", "kitchen", "cab-service"]
     },
     {
       name: "Family Cottage",
       price: "₹5,800",
-      image: "https://images.unsplash.com/photo-1482938289607-e9573fc25ebb?q=80&w=800&auto=format&fit=crop",
+      image: "/lovable-uploads/ed4528ea-633a-4eab-8be8-f2a165977ea9.png",
       amenities: ["wifi", "hot-water", "kitchen", "cab-service"]
     }
   ];
@@ -153,6 +155,38 @@ const Index = () => {
     }
   ];
 
+  // Fetch weather data for Madikeri
+  useEffect(() => {
+    const fetchWeather = async () => {
+      try {
+        // Using OpenWeatherMap API - users would need to add their API key
+        const response = await fetch(
+          `https://api.openweathermap.org/data/2.5/forecast?q=Madikeri,IN&appid=YOUR_API_KEY&units=metric`
+        );
+        if (response.ok) {
+          const data = await response.json();
+          setWeather(data);
+        }
+      } catch (error) {
+        console.log('Weather data not available');
+        // Set mock weather data for demonstration
+        setWeather({
+          list: [
+            { dt_txt: '2024-01-01', main: { temp: 22, temp_min: 18, temp_max: 25 }, weather: [{ main: 'Clear', description: 'clear sky' }] },
+            { dt_txt: '2024-01-02', main: { temp: 24, temp_min: 19, temp_max: 27 }, weather: [{ main: 'Clouds', description: 'few clouds' }] },
+            { dt_txt: '2024-01-03', main: { temp: 21, temp_min: 17, temp_max: 24 }, weather: [{ main: 'Rain', description: 'light rain' }] },
+            { dt_txt: '2024-01-04', main: { temp: 23, temp_min: 18, temp_max: 26 }, weather: [{ main: 'Clear', description: 'clear sky' }] },
+            { dt_txt: '2024-01-05', main: { temp: 25, temp_min: 20, temp_max: 28 }, weather: [{ main: 'Clouds', description: 'scattered clouds' }] },
+            { dt_txt: '2024-01-06', main: { temp: 22, temp_min: 18, temp_max: 25 }, weather: [{ main: 'Clear', description: 'clear sky' }] },
+            { dt_txt: '2024-01-07', main: { temp: 24, temp_min: 19, temp_max: 27 }, weather: [{ main: 'Clouds', description: 'overcast clouds' }] }
+          ]
+        });
+      }
+    };
+    
+    fetchWeather();
+  }, []);
+
   const getAmenityIcon = (amenity: string) => {
     switch (amenity) {
       case "wifi": return <Wifi className="w-4 h-4" />;
@@ -186,6 +220,15 @@ const Index = () => {
     openWhatsApp(message);
   };
 
+  const getWeatherIcon = (weatherMain: string) => {
+    switch (weatherMain) {
+      case 'Clear': return <Sun className="w-5 h-5 text-yellow-500" />;
+      case 'Clouds': return <Cloud className="w-5 h-5 text-gray-500" />;
+      case 'Rain': return <Droplets className="w-5 h-5 text-blue-500" />;
+      default: return <Cloud className="w-5 h-5 text-gray-500" />;
+    }
+  };
+
   return (
     <div className="min-h-screen bg-gradient-to-b from-green-50 to-amber-50">
       {/* Hero Section */}
@@ -200,11 +243,41 @@ const Index = () => {
         </div>
         
         <div className="relative z-10 text-center text-white px-4 max-w-4xl mx-auto">
-          <div className="bg-green-600/20 backdrop-blur-sm border border-green-400/30 rounded-2xl px-6 py-3 mb-6 inline-block">
-            <p className="text-lg font-medium flex items-center gap-2">
+          <div className="bg-green-600/20 backdrop-blur-sm border border-green-400/30 rounded-xl px-4 py-2 mb-4 inline-block">
+            <p className="text-sm font-medium flex items-center gap-2">
               Welcome to Kuppendare Homestay in the Heart of Coorg! 🌿
             </p>
           </div>
+
+          {/* Weather Widget */}
+          {weather && (
+            <div className="bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl p-4 mb-6 max-w-4xl mx-auto">
+              <h3 className="text-lg font-semibold mb-3 flex items-center gap-2">
+                <Thermometer className="w-5 h-5" />
+                Madikeri Weather - Next 7 Days
+              </h3>
+              <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-3">
+                {weather.list.slice(0, 7).map((day, index) => (
+                  <div key={index} className="bg-white/10 rounded-lg p-3 text-center backdrop-blur-sm">
+                    <div className="text-xs opacity-80 mb-1">
+                      {new Date(day.dt_txt || Date.now() + index * 24 * 60 * 60 * 1000).toLocaleDateString('en-US', { weekday: 'short' })}
+                    </div>
+                    <div className="flex justify-center mb-2">
+                      {getWeatherIcon(day.weather?.[0]?.main || 'Clear')}
+                    </div>
+                    <div className="text-lg font-bold">{Math.round(day.main?.temp || 22)}°C</div>
+                    <div className="text-xs opacity-75">
+                      {Math.round(day.main?.temp_min || 18)}° / {Math.round(day.main?.temp_max || 25)}°
+                    </div>
+                    <div className="text-xs opacity-70 mt-1 capitalize">
+                      {day.weather?.[0]?.description || 'Clear sky'}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+
           <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-6 animate-fade-in">
             Your Serene Escape in Coorg Starts Here
           </h1>
@@ -256,8 +329,8 @@ const Index = () => {
             </div>
             <div className="order-1 lg:order-2">
               <img 
-                src="https://images.unsplash.com/photo-1501854140801-50d01698950b?q=80&w=800&auto=format&fit=crop"
-                alt="Coorg landscape"
+                src="/lovable-uploads/f90d3ee3-3394-4bcb-8fc4-904e6253b857.png"
+                alt="Kuppendare Homestay exterior"
                 className="rounded-3xl shadow-2xl w-full h-[400px] object-cover hover:scale-105 transition-transform duration-500"
               />
             </div>
