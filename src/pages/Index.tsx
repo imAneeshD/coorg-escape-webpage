@@ -1,4 +1,5 @@
 
+
 import { useState, useEffect } from "react";
 import { Phone, MapPin, MessageCircle, Calendar, Users, Star, Wifi, Car, Thermometer, Mail, ChefHat, Droplets, Cloud, Sun } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -24,34 +25,49 @@ const HeroSection = ({ weather, getWeatherIcon, handleBookNow, scrollToGallery }
         </p>
       </div>
 
-      {/* Weather Widget - Made more prominent */}
-      {weather && (
-        <div className="bg-white/15 backdrop-blur-md border border-white/30 rounded-2xl p-6 mb-8 max-w-5xl mx-auto shadow-xl">
-          <h3 className="text-xl font-semibold mb-4 flex items-center gap-2 justify-center">
-            <Thermometer className="w-6 h-6 text-blue-300" />
-            <span className="text-blue-100">Madikeri Weather - Next 7 Days</span>
-          </h3>
+      {/* Enhanced Weather Widget with Animation */}
+      <div className="bg-gradient-to-br from-blue-500/20 to-purple-600/20 backdrop-blur-xl border border-white/40 rounded-3xl p-8 mb-8 max-w-6xl mx-auto shadow-2xl animate-fade-in hover:scale-105 transition-all duration-500">
+        <div className="flex items-center justify-center gap-3 mb-6">
+          <div className="bg-blue-400/30 p-3 rounded-full animate-pulse">
+            <Thermometer className="w-8 h-8 text-blue-200" />
+          </div>
+          <div>
+            <h3 className="text-2xl font-bold text-white mb-1">Madikeri Weather</h3>
+            <p className="text-blue-200 text-sm">Next 7 Days Forecast</p>
+          </div>
+        </div>
+        
+        {weather ? (
           <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-4">
             {weather.list.slice(0, 7).map((day, index) => (
-              <div key={index} className="bg-white/15 rounded-xl p-4 text-center backdrop-blur-sm border border-white/20 hover:bg-white/20 transition-all duration-300">
-                <div className="text-sm opacity-90 mb-2 font-medium">
+              <div 
+                key={index} 
+                className="bg-white/20 backdrop-blur-sm rounded-2xl p-4 text-center border border-white/30 hover:bg-white/30 transition-all duration-300 hover:scale-105 animate-fade-in"
+                style={{ animationDelay: `${index * 0.1}s` }}
+              >
+                <div className="text-sm font-semibold text-blue-100 mb-2">
                   {new Date(day.dt_txt || Date.now() + index * 24 * 60 * 60 * 1000).toLocaleDateString('en-US', { weekday: 'short' })}
                 </div>
-                <div className="flex justify-center mb-3">
+                <div className="flex justify-center mb-3 transform hover:scale-110 transition-transform duration-300">
                   {getWeatherIcon(day.weather?.[0]?.main || 'Clear')}
                 </div>
-                <div className="text-xl font-bold mb-1">{Math.round(day.main?.temp || 22)}°C</div>
-                <div className="text-sm opacity-80 mb-2">
+                <div className="text-2xl font-bold text-white mb-2">{Math.round(day.main?.temp || 22)}°C</div>
+                <div className="text-sm text-blue-200 mb-2">
                   {Math.round(day.main?.temp_min || 18)}° / {Math.round(day.main?.temp_max || 25)}°
                 </div>
-                <div className="text-xs opacity-75 capitalize leading-tight">
+                <div className="text-xs text-blue-300 capitalize leading-tight">
                   {day.weather?.[0]?.description || 'Clear sky'}
                 </div>
               </div>
             ))}
           </div>
-        </div>
-      )}
+        ) : (
+          <div className="flex items-center justify-center py-8">
+            <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-white"></div>
+            <span className="ml-3 text-white">Loading weather data...</span>
+          </div>
+        )}
+      </div>
 
       <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-6 animate-fade-in">
         Your Serene Escape in Coorg Starts Here
@@ -701,3 +717,4 @@ const Index = () => {
 };
 
 export default Index;
+
