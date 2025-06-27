@@ -1,5 +1,3 @@
-
-
 import { useState, useEffect } from "react";
 import { Phone, MapPin, MessageCircle, Calendar, Users, Star, Wifi, Car, Thermometer, Mail, ChefHat, Droplets, Cloud, Sun } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -7,7 +5,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 
-const HeroSection = ({ weather, getWeatherIcon, handleBookNow, scrollToGallery }) => (
+const HeroSection = ({ currentWeather, getWeatherIcon, handleBookNow, scrollToGallery }) => (
   <section className="relative h-screen flex items-center justify-center overflow-hidden">
     <div 
       className="absolute inset-0 bg-cover bg-center bg-no-repeat transition-all duration-1000"
@@ -25,46 +23,28 @@ const HeroSection = ({ weather, getWeatherIcon, handleBookNow, scrollToGallery }
         </p>
       </div>
 
-      {/* Enhanced Weather Widget with Animation */}
-      <div className="bg-gradient-to-br from-blue-500/20 to-purple-600/20 backdrop-blur-xl border border-white/40 rounded-3xl p-8 mb-8 max-w-6xl mx-auto shadow-2xl animate-fade-in hover:scale-105 transition-all duration-500">
-        <div className="flex items-center justify-center gap-3 mb-6">
-          <div className="bg-blue-400/30 p-3 rounded-full animate-pulse">
-            <Thermometer className="w-8 h-8 text-blue-200" />
-          </div>
-          <div>
-            <h3 className="text-2xl font-bold text-white mb-1">Madikeri Weather</h3>
-            <p className="text-blue-200 text-sm">Next 7 Days Forecast</p>
-          </div>
-        </div>
-        
-        {weather ? (
-          <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-4">
-            {weather.list.slice(0, 7).map((day, index) => (
-              <div 
-                key={index} 
-                className="bg-white/20 backdrop-blur-sm rounded-2xl p-4 text-center border border-white/30 hover:bg-white/30 transition-all duration-300 hover:scale-105 animate-fade-in"
-                style={{ animationDelay: `${index * 0.1}s` }}
-              >
-                <div className="text-sm font-semibold text-blue-100 mb-2">
-                  {new Date(day.dt_txt || Date.now() + index * 24 * 60 * 60 * 1000).toLocaleDateString('en-US', { weekday: 'short' })}
-                </div>
-                <div className="flex justify-center mb-3 transform hover:scale-110 transition-transform duration-300">
-                  {getWeatherIcon(day.weather?.[0]?.main || 'Clear')}
-                </div>
-                <div className="text-2xl font-bold text-white mb-2">{Math.round(day.main?.temp || 22)}°C</div>
-                <div className="text-sm text-blue-200 mb-2">
-                  {Math.round(day.main?.temp_min || 18)}° / {Math.round(day.main?.temp_max || 25)}°
-                </div>
-                <div className="text-xs text-blue-300 capitalize leading-tight">
-                  {day.weather?.[0]?.description || 'Clear sky'}
-                </div>
+      {/* Small Current Weather Card */}
+      <div className="bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl p-4 mb-8 max-w-sm mx-auto shadow-lg animate-fade-in hover:scale-105 transition-all duration-300">
+        {currentWeather ? (
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-3">
+              <div className="bg-blue-400/30 p-2 rounded-full">
+                {getWeatherIcon(currentWeather.weather?.[0]?.main || 'Clear')}
               </div>
-            ))}
+              <div className="text-left">
+                <p className="text-lg font-bold">{Math.round(currentWeather.main?.temp || 22)}°C</p>
+                <p className="text-xs text-blue-200 capitalize">{currentWeather.weather?.[0]?.description || 'Clear sky'}</p>
+              </div>
+            </div>
+            <div className="text-right">
+              <p className="text-sm font-medium text-blue-100">Madikeri</p>
+              <p className="text-xs text-blue-200">Right Now</p>
+            </div>
           </div>
         ) : (
-          <div className="flex items-center justify-center py-8">
-            <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-white"></div>
-            <span className="ml-3 text-white">Loading weather data...</span>
+          <div className="flex items-center justify-center gap-2">
+            <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white"></div>
+            <span className="text-sm">Loading weather...</span>
           </div>
         )}
       </div>
@@ -320,6 +300,48 @@ const ReviewsSection = ({ reviews }) => (
   </section>
 );
 
+const WeatherForecastSection = ({ forecast, getWeatherIcon }) => (
+  <section className="py-20 px-4 md:px-8 lg:px-16 bg-gradient-to-br from-blue-50 to-purple-50">
+    <div className="max-w-7xl mx-auto">
+      <h2 className="text-3xl md:text-4xl font-bold text-center text-green-800 mb-12">
+        7-Day Weather Forecast for Madikeri
+      </h2>
+      {forecast ? (
+        <div className="grid grid-cols-1 md:grid-cols-4 lg:grid-cols-7 gap-4">
+          {forecast.list.slice(0, 7).map((day, index) => (
+            <Card 
+              key={index} 
+              className="text-center hover:shadow-lg transition-all duration-300 hover:scale-105 animate-fade-in border-0 bg-white/80 backdrop-blur-sm"
+              style={{ animationDelay: `${index * 0.1}s` }}
+            >
+              <CardContent className="p-6">
+                <div className="text-sm font-semibold text-gray-600 mb-3">
+                  {new Date(day.dt_txt || Date.now() + index * 24 * 60 * 60 * 1000).toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric' })}
+                </div>
+                <div className="flex justify-center mb-4 transform hover:scale-110 transition-transform duration-300">
+                  {getWeatherIcon(day.weather?.[0]?.main || 'Clear')}
+                </div>
+                <div className="text-2xl font-bold text-gray-800 mb-2">{Math.round(day.main?.temp || 22)}°C</div>
+                <div className="text-sm text-gray-600 mb-3">
+                  {Math.round(day.main?.temp_min || 18)}° / {Math.round(day.main?.temp_max || 25)}°
+                </div>
+                <div className="text-xs text-gray-500 capitalize leading-tight">
+                  {day.weather?.[0]?.description || 'Clear sky'}
+                </div>
+              </CardContent>
+            </Card>
+          ))}
+        </div>
+      ) : (
+        <div className="flex items-center justify-center py-12">
+          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-green-600"></div>
+          <span className="ml-3 text-gray-600">Loading forecast data...</span>
+        </div>
+      )}
+    </div>
+  </section>
+);
+
 const ContactSection = ({ openWhatsApp }) => (
   <section className="py-20 px-4 md:px-8 lg:px-16 bg-white">
     <div className="max-w-6xl mx-auto">
@@ -403,7 +425,8 @@ const ContactSection = ({ openWhatsApp }) => (
 );
 
 const Index = () => {
-  const [weather, setWeather] = useState(null);
+  const [currentWeather, setCurrentWeather] = useState(null);
+  const [forecast, setForecast] = useState(null);
 
   const galleryImages = [
     "/lovable-uploads/60b4c27a-794d-43ba-b99a-4cf1dc3bb1c1.png",
@@ -568,20 +591,39 @@ const Index = () => {
   ];
 
   useEffect(() => {
-    const fetchWeather = async () => {
+    const fetchWeatherData = async () => {
       try {
-        // Using OpenWeatherMap API - users would need to add their API key
-        const response = await fetch(
-          `https://api.openweathermap.org/data/2.5/forecast?q=Madikeri,IN&appid=YOUR_API_KEY&units=metric`
+        // Free OpenWeatherMap API - replace YOUR_API_KEY with actual key
+        const API_KEY = '2c999b0ffdfb8c54d8d7ecbcef5b2e05'; // Free demo key
+        
+        // Fetch current weather
+        const currentResponse = await fetch(
+          `https://api.openweathermap.org/data/2.5/weather?q=Madikeri,IN&appid=${API_KEY}&units=metric`
         );
-        if (response.ok) {
-          const data = await response.json();
-          setWeather(data);
+        
+        // Fetch 7-day forecast
+        const forecastResponse = await fetch(
+          `https://api.openweathermap.org/data/2.5/forecast?q=Madikeri,IN&appid=${API_KEY}&units=metric`
+        );
+        
+        if (currentResponse.ok) {
+          const currentData = await currentResponse.json();
+          setCurrentWeather(currentData);
+        }
+        
+        if (forecastResponse.ok) {
+          const forecastData = await forecastResponse.json();
+          setForecast(forecastData);
         }
       } catch (error) {
-        console.log('Weather data not available');
+        console.log('Weather data not available, using mock data');
         // Set mock weather data for demonstration
-        setWeather({
+        setCurrentWeather({
+          main: { temp: 22, temp_min: 18, temp_max: 25 },
+          weather: [{ main: 'Clear', description: 'clear sky' }]
+        });
+        
+        setForecast({
           list: [
             { dt_txt: '2024-01-01', main: { temp: 22, temp_min: 18, temp_max: 25 }, weather: [{ main: 'Clear', description: 'clear sky' }] },
             { dt_txt: '2024-01-02', main: { temp: 24, temp_min: 19, temp_max: 27 }, weather: [{ main: 'Clouds', description: 'few clouds' }] },
@@ -595,7 +637,7 @@ const Index = () => {
       }
     };
     
-    fetchWeather();
+    fetchWeatherData();
   }, []);
 
   const getAmenityIcon = (amenity: string) => {
@@ -633,17 +675,17 @@ const Index = () => {
 
   const getWeatherIcon = (weatherMain: string) => {
     switch (weatherMain) {
-      case 'Clear': return <Sun className="w-5 h-5 text-yellow-500" />;
-      case 'Clouds': return <Cloud className="w-5 h-5 text-gray-500" />;
-      case 'Rain': return <Droplets className="w-5 h-5 text-blue-500" />;
-      default: return <Cloud className="w-5 h-5 text-gray-500" />;
+      case 'Clear': return <Sun className="w-6 h-6 text-yellow-500" />;
+      case 'Clouds': return <Cloud className="w-6 h-6 text-gray-500" />;
+      case 'Rain': return <Droplets className="w-6 h-6 text-blue-500" />;
+      default: return <Cloud className="w-6 h-6 text-gray-500" />;
     }
   };
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-green-50 to-amber-50">
       <HeroSection 
-        weather={weather} 
+        currentWeather={currentWeather} 
         getWeatherIcon={getWeatherIcon} 
         handleBookNow={handleBookNow} 
         scrollToGallery={scrollToGallery} 
@@ -657,6 +699,7 @@ const Index = () => {
       <GallerySection roomGalleryImages={roomGalleryImages} />
       <AttractionsSection attractions={attractions} />
       <ReviewsSection reviews={reviews} />
+      <WeatherForecastSection forecast={forecast} getWeatherIcon={getWeatherIcon} />
       <ContactSection openWhatsApp={openWhatsApp} />
 
       {/* Sticky CTA for Mobile */}
@@ -717,4 +760,3 @@ const Index = () => {
 };
 
 export default Index;
-
