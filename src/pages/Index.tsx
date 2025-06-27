@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from "react";
 import { Phone, MapPin, MessageCircle, Calendar, Users, Star, Wifi, Car, Thermometer, Mail, ChefHat, Droplets, Cloud, Sun } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -13,37 +14,37 @@ const HeroSection = ({ weather, getWeatherIcon, handleBookNow, scrollToGallery }
         backgroundImage: `url('/lovable-uploads/f90d3ee3-3394-4bcb-8fc4-904e6253b857.png')` 
       }}
     >
-      <div className="absolute inset-0 bg-black/60"></div>
+      <div className="absolute inset-0 bg-black/70"></div>
     </div>
     
-    <div className="relative z-10 text-center text-white px-4 max-w-4xl mx-auto">
-      <div className="bg-green-600/20 backdrop-blur-sm border border-green-400/30 rounded-xl px-3 py-1 mb-4 inline-block">
+    <div className="relative z-10 text-center text-white px-4 max-w-6xl mx-auto">
+      <div className="bg-green-600/20 backdrop-blur-sm border border-green-400/30 rounded-xl px-3 py-1 mb-6 inline-block">
         <p className="text-xs font-medium flex items-center gap-2">
           Welcome to Kuppendare Homestay in the Heart of Coorg! 🌿
         </p>
       </div>
 
-      {/* Weather Widget */}
+      {/* Weather Widget - Made more prominent */}
       {weather && (
-        <div className="bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl p-4 mb-6 max-w-4xl mx-auto">
-          <h3 className="text-lg font-semibold mb-3 flex items-center gap-2">
-            <Thermometer className="w-5 h-5" />
-            Madikeri Weather - Next 7 Days
+        <div className="bg-white/15 backdrop-blur-md border border-white/30 rounded-2xl p-6 mb-8 max-w-5xl mx-auto shadow-xl">
+          <h3 className="text-xl font-semibold mb-4 flex items-center gap-2 justify-center">
+            <Thermometer className="w-6 h-6 text-blue-300" />
+            <span className="text-blue-100">Madikeri Weather - Next 7 Days</span>
           </h3>
-          <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-3">
+          <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-4">
             {weather.list.slice(0, 7).map((day, index) => (
-              <div key={index} className="bg-white/10 rounded-lg p-3 text-center backdrop-blur-sm">
-                <div className="text-xs opacity-80 mb-1">
+              <div key={index} className="bg-white/15 rounded-xl p-4 text-center backdrop-blur-sm border border-white/20 hover:bg-white/20 transition-all duration-300">
+                <div className="text-sm opacity-90 mb-2 font-medium">
                   {new Date(day.dt_txt || Date.now() + index * 24 * 60 * 60 * 1000).toLocaleDateString('en-US', { weekday: 'short' })}
                 </div>
-                <div className="flex justify-center mb-2">
+                <div className="flex justify-center mb-3">
                   {getWeatherIcon(day.weather?.[0]?.main || 'Clear')}
                 </div>
-                <div className="text-lg font-bold">{Math.round(day.main?.temp || 22)}°C</div>
-                <div className="text-xs opacity-75">
+                <div className="text-xl font-bold mb-1">{Math.round(day.main?.temp || 22)}°C</div>
+                <div className="text-sm opacity-80 mb-2">
                   {Math.round(day.main?.temp_min || 18)}° / {Math.round(day.main?.temp_max || 25)}°
                 </div>
-                <div className="text-xs opacity-70 mt-1 capitalize">
+                <div className="text-xs opacity-75 capitalize leading-tight">
                   {day.weather?.[0]?.description || 'Clear sky'}
                 </div>
               </div>
@@ -344,7 +345,7 @@ const ContactSection = ({ openWhatsApp }) => (
           
           <div className="bg-gradient-to-br from-green-50 to-amber-50 p-6 rounded-2xl">
             <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3887.558977484839!2d75.7355779!3d12.4243983!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ba5ee0e8d0b7699%3A0x123456789abcdef0!2sPatrika%20Bhavan%2C%20Madikeri%2C%20Karnataka%20571201!5e0!3m2!1sen!2sin!4v1635000000000!5m2!1sen!2sin"
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3887.5463!2d75.7306781!3d12.4246579!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ba5018929c45463%3A0xcf7248562c1700f!2sKuppendare+Coorg+Home+Stay+Centrally+Located+Accommodation!5e0!3m2!1sen!2sin!4v1635000000000!5m2!1sen!2sin"
               width="100%"
               height="200"
               style={{ border: 0 }}
