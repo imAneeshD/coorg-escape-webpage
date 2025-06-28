@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import { Phone, MapPin, MessageCircle, Calendar, Users, Star, Wifi, Car, Thermometer, Mail, ChefHat, Droplets, Cloud, Sun } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -30,11 +29,15 @@ const HeroSection = ({ currentWeather, getWeatherIcon, handleBookNow, scrollToGa
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">
               <div className="bg-blue-400/30 p-2 rounded-full">
-                {getWeatherIcon(currentWeather.weather?.[0]?.main || 'Clear')}
+                {getWeatherIcon(currentWeather.weather_code !== undefined ? 
+                  (currentWeather.weather_code === 0 ? 'Clear' : 
+                   currentWeather.weather_code <= 3 ? 'Clouds' : 'Rain') : 'Clear')}
               </div>
               <div className="text-left">
-                <p className="text-lg font-bold">{Math.round(currentWeather.main?.temp || 22)}°C</p>
-                <p className="text-xs text-blue-200 capitalize">{currentWeather.weather?.[0]?.description || 'Clear sky'}</p>
+                <p className="text-lg font-bold">{Math.round(currentWeather.temp || 22)}°C</p>
+                <p className="text-xs text-blue-200">
+                  {currentWeather.humidity ? `${currentWeather.humidity}% humidity` : 'Pleasant weather'}
+                </p>
               </div>
             </div>
             <div className="text-right">
@@ -309,7 +312,7 @@ const WeatherForecastSection = ({ forecast, getWeatherIcon }) => (
       </h2>
       {forecast ? (
         <div className="grid grid-cols-1 md:grid-cols-4 lg:grid-cols-7 gap-4">
-          {forecast.list.slice(0, 7).map((day, index) => (
+          {forecast.slice(0, 7).map((day, index) => (
             <Card 
               key={index} 
               className="text-center hover:shadow-lg transition-all duration-300 hover:scale-105 animate-fade-in border-0 bg-white/80 backdrop-blur-sm"
@@ -317,17 +320,17 @@ const WeatherForecastSection = ({ forecast, getWeatherIcon }) => (
             >
               <CardContent className="p-6">
                 <div className="text-sm font-semibold text-gray-600 mb-3">
-                  {new Date(day.dt_txt || Date.now() + index * 24 * 60 * 60 * 1000).toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric' })}
+                  {new Date(day.date).toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric' })}
                 </div>
                 <div className="flex justify-center mb-4 transform hover:scale-110 transition-transform duration-300">
-                  {getWeatherIcon(day.weather?.[0]?.main || 'Clear')}
+                  {getWeatherIcon(day.condition)}
                 </div>
-                <div className="text-2xl font-bold text-gray-800 mb-2">{Math.round(day.main?.temp || 22)}°C</div>
+                <div className="text-2xl font-bold text-gray-800 mb-2">{Math.round(day.temp)}°C</div>
                 <div className="text-sm text-gray-600 mb-3">
-                  {Math.round(day.main?.temp_min || 18)}° / {Math.round(day.main?.temp_max || 25)}°
+                  {Math.round(day.temp_min)}° / {Math.round(day.temp_max)}°
                 </div>
                 <div className="text-xs text-gray-500 capitalize leading-tight">
-                  {day.weather?.[0]?.description || 'Clear sky'}
+                  {day.description}
                 </div>
               </CardContent>
             </Card>
@@ -594,52 +597,95 @@ const Index = () => {
   useEffect(() => {
     const fetchWeatherData = async () => {
       try {
-        // Free OpenWeatherMap API - replace YOUR_API_KEY with actual key
-        const API_KEY = '2c999b0ffdfb8c54d8d7ecbcef5b2e05'; // Free demo key
-        
-        // Fetch current weather
+        // Madikeri coordinates: latitude 12.4246, longitude 75.7382
         const currentResponse = await fetch(
-          `https://api.openweathermap.org/data/2.5/weather?q=Madikeri,IN&appid=${API_KEY}&units=metric`
-        );
-        
-        // Fetch 7-day forecast
-        const forecastResponse = await fetch(
-          `https://api.openweathermap.org/data/2.5/forecast?q=Madikeri,IN&appid=${API_KEY}&units=metric`
+          'https://api.open-meteo.com/v1/forecast?latitude=12.4246&longitude=75.7382&current=temperature_2m,relative_humidity_2m,weather_code&daily=temperature_2m_max,temperature_2m_min,weather_code&timezone=Asia%2FKolkata'
         );
         
         if (currentResponse.ok) {
-          const currentData = await currentResponse.json();
-          setCurrentWeather(currentData);
-        }
-        
-        if (forecastResponse.ok) {
-          const forecastData = await forecastResponse.json();
+          const data = await currentResponse.json();
+          console.log('Weather data received:', data);
+          
+          // Set current weather
+          setCurrentWeather({
+            temp: data.current.temperature_2m,
+            humidity: data.current.relative_humidity_2m,
+            weather_code: data.current.weather_code
+          });
+          
+          // Process 7-day forecast
+          const forecastData = data.daily.time.slice(0, 7).map((date, index) => {
+            const weatherCode = data.daily.weather_code[index];
+            return {
+              date: date,
+              temp: (data.daily.temperature_2m_max[index] + data.daily.temperature_2m_min[index]) / 2,
+              temp_max: data.daily.temperature_2m_max[index],
+              temp_min: data.daily.temperature_2m_min[index],
+              condition: getWeatherCondition(weatherCode),
+              description: getWeatherDescription(weatherCode)
+            };
+          });
+          
           setForecast(forecastData);
         }
       } catch (error) {
-        console.log('Weather data not available, using mock data');
+        console.log('Weather API error:', error);
         // Set mock weather data for demonstration
         setCurrentWeather({
-          main: { temp: 22, temp_min: 18, temp_max: 25 },
-          weather: [{ main: 'Clear', description: 'clear sky' }]
+          temp: 22,
+          humidity: 75,
+          weather_code: 0
         });
         
-        setForecast({
-          list: [
-            { dt_txt: '2024-01-01', main: { temp: 22, temp_min: 18, temp_max: 25 }, weather: [{ main: 'Clear', description: 'clear sky' }] },
-            { dt_txt: '2024-01-02', main: { temp: 24, temp_min: 19, temp_max: 27 }, weather: [{ main: 'Clouds', description: 'few clouds' }] },
-            { dt_txt: '2024-01-03', main: { temp: 21, temp_min: 17, temp_max: 24 }, weather: [{ main: 'Rain', description: 'light rain' }] },
-            { dt_txt: '2024-01-04', main: { temp: 23, temp_min: 18, temp_max: 26 }, weather: [{ main: 'Clear', description: 'clear sky' }] },
-            { dt_txt: '2024-01-05', main: { temp: 25, temp_min: 20, temp_max: 28 }, weather: [{ main: 'Clouds', description: 'scattered clouds' }] },
-            { dt_txt: '2024-01-06', main: { temp: 22, temp_min: 18, temp_max: 25 }, weather: [{ main: 'Clear', description: 'clear sky' }] },
-            { dt_txt: '2024-01-07', main: { temp: 24, temp_min: 19, temp_max: 27 }, weather: [{ main: 'Clouds', description: 'overcast clouds' }] }
-          ]
-        });
+        const mockForecast = [
+          { date: new Date().toISOString().split('T')[0], temp: 22, temp_min: 18, temp_max: 25, condition: 'Clear', description: 'Clear sky' },
+          { date: new Date(Date.now() + 86400000).toISOString().split('T')[0], temp: 24, temp_min: 19, temp_max: 27, condition: 'Clouds', description: 'Few clouds' },
+          { date: new Date(Date.now() + 172800000).toISOString().split('T')[0], temp: 21, temp_min: 17, temp_max: 24, condition: 'Rain', description: 'Light rain' },
+          { date: new Date(Date.now() + 259200000).toISOString().split('T')[0], temp: 23, temp_min: 18, temp_max: 26, condition: 'Clear', description: 'Clear sky' },
+          { date: new Date(Date.now() + 345600000).toISOString().split('T')[0], temp: 25, temp_min: 20, temp_max: 28, condition: 'Clouds', description: 'Scattered clouds' },
+          { date: new Date(Date.now() + 432000000).toISOString().split('T')[0], temp: 22, temp_min: 18, temp_max: 25, condition: 'Clear', description: 'Clear sky' },
+          { date: new Date(Date.now() + 518400000).toISOString().split('T')[0], temp: 24, temp_min: 19, temp_max: 27, condition: 'Clouds', description: 'Overcast clouds' }
+        ];
+        
+        setForecast(mockForecast);
       }
     };
     
     fetchWeatherData();
   }, []);
+
+  const getWeatherCondition = (weatherCode) => {
+    // WMO Weather interpretation codes
+    if (weatherCode === 0) return 'Clear';
+    if (weatherCode <= 3) return 'Clouds';
+    if (weatherCode >= 45 && weatherCode <= 48) return 'Fog';
+    if (weatherCode >= 51 && weatherCode <= 67) return 'Rain';
+    if (weatherCode >= 71 && weatherCode <= 77) return 'Snow';
+    if (weatherCode >= 80 && weatherCode <= 99) return 'Rain';
+    return 'Clear';
+  };
+
+  const getWeatherDescription = (weatherCode) => {
+    // WMO Weather interpretation codes
+    const descriptions = {
+      0: 'Clear sky',
+      1: 'Mainly clear',
+      2: 'Partly cloudy',
+      3: 'Overcast',
+      45: 'Fog',
+      48: 'Depositing rime fog',
+      51: 'Light drizzle',
+      53: 'Moderate drizzle',
+      55: 'Dense drizzle',
+      61: 'Slight rain',
+      63: 'Moderate rain',
+      65: 'Heavy rain',
+      80: 'Slight rain showers',
+      81: 'Moderate rain showers',
+      82: 'Violent rain showers'
+    };
+    return descriptions[weatherCode] || 'Clear sky';
+  };
 
   const getAmenityIcon = (amenity: string) => {
     switch (amenity) {
@@ -679,6 +725,7 @@ const Index = () => {
       case 'Clear': return <Sun className="w-6 h-6 text-yellow-500" />;
       case 'Clouds': return <Cloud className="w-6 h-6 text-gray-500" />;
       case 'Rain': return <Droplets className="w-6 h-6 text-blue-500" />;
+      case 'Fog': return <Cloud className="w-6 h-6 text-gray-400" />;
       default: return <Cloud className="w-6 h-6 text-gray-500" />;
     }
   };
