@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from "react";
 import { Phone, MapPin, MessageCircle, Calendar, Users, Star, Wifi, Car, Thermometer, Mail, ChefHat, Droplets, Cloud, Sun } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -518,56 +519,56 @@ const Index = () => {
       name: "Raja Seat", 
       distance: "1.3 km", 
       duration: "4 mins",
-      image: "https://images.unsplash.com/photo-1501436513145-30f24e19fcc4?q=80&w=400&auto=format&fit=crop",
+      image: "/lovable-uploads/b3648351-3dc5-4740-a021-6eaee98c1d00.png",
       description: "Famous sunset point with garden views"
     },
     { 
       name: "Mandalpatti", 
       distance: "19 km", 
       duration: "57 mins",
-      image: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?q=80&w=400&auto=format&fit=crop",
+      image: "/lovable-uploads/3059a01c-74a3-4eea-b027-3a6d09ef6c01.png",
       description: "Breathtaking hilltop views and jeep safari"
     },
     { 
       name: "Tala Kavery", 
       distance: "43 km", 
       duration: "1 hr 18 mins",
-      image: "https://images.unsplash.com/photo-1484402628941-0bb20267684c?q=80&w=400&auto=format&fit=crop",
+      image: "/lovable-uploads/bb8eaa24-d4a5-431a-ab4f-bf7cfa81af3d.png",
       description: "Sacred source of River Cauvery"
     },
     { 
       name: "Nisarga Dhama", 
       distance: "27 km", 
       duration: "36 mins",
-      image: "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?q=80&w=400&auto=format&fit=crop",
+      image: "/lovable-uploads/82eb70f0-108c-400c-8c7a-beec2ff32db6.png",
       description: "Beautiful island formed by River Cauvery"
     },
     { 
       name: "Golden Temple (Bylakuppe)", 
       distance: "35 km", 
       duration: "50 mins",
-      image: "https://images.unsplash.com/photo-1581833971358-2c8b550f87b3?q=80&w=400&auto=format&fit=crop",
+      image: "/lovable-uploads/52fcd695-a5b4-4750-a70f-a6a5be50f2f2.png",
       description: "Largest Tibetan settlement in India"
     },
     { 
       name: "Dubare Forest", 
       distance: "28 km", 
       duration: "52 mins",
-      image: "https://images.unsplash.com/photo-1513475382585-d06e58bcb0e0?q=80&w=400&auto=format&fit=crop",
+      image: "/lovable-uploads/a555ee10-eea8-4b0a-a76c-62af1cd649a2.png",
       description: "Elephant camp and river activities"
     },
     { 
       name: "Harangi Dam", 
       distance: "35 km", 
       duration: "45 mins",
-      image: "https://images.unsplash.com/photo-1439066615861-d1af74d74000?q=80&w=400&auto=format&fit=crop",
+      image: "/lovable-uploads/2539ff3e-9464-4d45-b1d7-c708dbab63cc.png",
       description: "Scenic dam with boating facilities"
     },
     { 
       name: "Nagarahole", 
       distance: "67 km", 
       duration: "1 hr 37 mins",
-      image: "https://images.unsplash.com/photo-1549366021-9f761d040a94?q=80&w=400&auto=format&fit=crop",
+      image: "/lovable-uploads/bc5fba09-9e2d-47a9-a22f-80e9c9cccbf2.png",
       description: "National park with wildlife safari"
     }
   ];
