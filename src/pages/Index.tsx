@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from "react";
 import { Phone, MapPin, MessageCircle, Calendar, Users, Star, Wifi, Car, Thermometer, Mail, ChefHat, Droplets, Cloud, Sun } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -108,7 +109,7 @@ const AboutSection = () => (
         </div>
         <div className="order-1 lg:order-2">
           <img 
-            src="/lovable-uploads/f90d3ee3-3394-4bcb-8fc4-904e6253b857.png"
+            src="/lovable-uploads/b2dfd9f6-e46d-4180-9aca-bc9e18626736.png"
             alt="Kuppendare Homestay exterior"
             className="rounded-3xl shadow-2xl w-full h-[400px] object-cover hover:scale-105 transition-transform duration-500"
           />
