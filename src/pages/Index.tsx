@@ -5,7 +5,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 
-const HeroSection = ({ currentWeather, getWeatherIcon, handleBookNow, scrollToGallery }) => (
+const HeroSection = ({ currentWeather, getWeatherIcon, handleBookNow, scrollToGallery, scrollToForecast }) => (
   <section className="relative h-screen flex items-center justify-center overflow-hidden">
     <div 
       className="absolute inset-0 bg-cover bg-center bg-no-repeat transition-all duration-1000"
@@ -23,8 +23,11 @@ const HeroSection = ({ currentWeather, getWeatherIcon, handleBookNow, scrollToGa
         </p>
       </div>
 
-      {/* Small Current Weather Card */}
-      <div className="bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl p-4 mb-8 max-w-sm mx-auto shadow-lg animate-fade-in hover:scale-105 transition-all duration-300">
+      {/* Small Current Weather Card - Now Clickable */}
+      <div 
+        className="bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl p-4 mb-8 max-w-sm mx-auto shadow-lg animate-fade-in hover:scale-105 transition-all duration-300 cursor-pointer hover:bg-white/15"
+        onClick={scrollToForecast}
+      >
         {currentWeather ? (
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">
@@ -305,7 +308,7 @@ const ReviewsSection = ({ reviews }) => (
 );
 
 const WeatherForecastSection = ({ forecast, getWeatherIcon }) => (
-  <section className="py-20 px-4 md:px-8 lg:px-16 bg-gradient-to-br from-blue-50 to-purple-50">
+  <section id="weather-forecast" className="py-20 px-4 md:px-8 lg:px-16 bg-gradient-to-br from-blue-50 to-purple-50">
     <div className="max-w-7xl mx-auto">
       <h2 className="text-3xl md:text-4xl font-bold text-center text-green-800 mb-12">
         7-Day Weather Forecast for Madikeri
@@ -704,6 +707,13 @@ const Index = () => {
     }
   };
 
+  const scrollToForecast = () => {
+    const forecastSection = document.getElementById('weather-forecast');
+    if (forecastSection) {
+      forecastSection.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   const openWhatsApp = (message: string) => {
     const encodedMessage = encodeURIComponent(message);
     const whatsappUrl = `https://api.whatsapp.com/send/?phone=918050269791&text=${encodedMessage}&type=phone_number&app_absent=0`;
@@ -736,7 +746,8 @@ const Index = () => {
         currentWeather={currentWeather} 
         getWeatherIcon={getWeatherIcon} 
         handleBookNow={handleBookNow} 
-        scrollToGallery={scrollToGallery} 
+        scrollToGallery={scrollToGallery}
+        scrollToForecast={scrollToForecast}
       />
       <AboutSection />
       <RoomsSection 
