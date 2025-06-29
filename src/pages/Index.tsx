@@ -112,13 +112,26 @@ const AboutSection = () => (
             alt="Kuppendare Homestay exterior"
             className="rounded-3xl shadow-2xl w-full h-[400px] object-cover hover:scale-105 transition-transform duration-500"
           />
-          {/* 5 Stars overlay on bottom right of image */}
-          <div className="absolute bottom-4 right-4 bg-white/90 backdrop-blur-sm rounded-full px-4 py-2 shadow-lg">
-            <div className="flex items-center gap-1">
+          
+          {/* Customer Count Badge - Top Right */}
+          <div className="absolute top-4 right-4 bg-white/95 backdrop-blur-sm rounded-2xl px-4 py-3 shadow-lg border">
+            <div className="text-center">
+              <div className="text-2xl font-bold text-orange-500">500+</div>
+              <div className="text-sm text-blue-600 font-medium">Happy Customers</div>
+            </div>
+          </div>
+
+          {/* Review Card - Bottom Left */}
+          <div className="absolute bottom-4 left-4 bg-white/95 backdrop-blur-sm rounded-2xl p-4 shadow-lg border max-w-[200px]">
+            <div className="flex items-center gap-1 mb-2">
               {[...Array(5)].map((_, i) => (
-                <Star key={i} className="w-4 h-4 fill-yellow-400 text-yellow-400" />
+                <Star key={i} className="w-4 h-4 fill-orange-400 text-orange-400" />
               ))}
             </div>
+            <p className="text-sm text-gray-700 mb-2 font-medium">
+              "Amazing hospitality and beautiful location!"
+            </p>
+            <p className="text-xs text-gray-500">- Priya S.</p>
           </div>
         </div>
       </div>
