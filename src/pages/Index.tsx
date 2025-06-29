@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import { Phone, MapPin, MessageCircle, Calendar, Users, Star, Wifi, Car, Thermometer, Mail, ChefHat, Droplets, Cloud, Sun } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -19,13 +18,11 @@ const HeroSection = ({ currentWeather, getWeatherIcon, handleBookNow, scrollToGa
     
     {/* Logo in top left corner */}
     <div className="absolute top-6 left-6 z-20">
-      <div className="bg-white/10 backdrop-blur-md border border-white/20 rounded-xl p-3 hover:bg-white/15 transition-all duration-300">
-        <img 
-          src="https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?w=120&h=60&fit=crop" 
-          alt="Kuppendare Homestay Logo" 
-          className="h-8 w-auto object-contain"
-        />
-      </div>
+      <img 
+        src="https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?w=120&h=60&fit=crop" 
+        alt="Kuppendare Homestay Logo" 
+        className="h-8 w-auto object-contain"
+      />
     </div>
     
     <div className="relative z-10 text-center text-white px-4 max-w-6xl mx-auto">
@@ -117,12 +114,43 @@ const AboutSection = () => (
               surrounded by lush coffee plantations.
             </p>
           </div>
+          
+          {/* Centrally Located Accommodation Section */}
+          <div className="bg-gradient-to-br from-green-50 to-amber-50 p-6 rounded-2xl border-l-4 border-green-600">
+            <h3 className="text-xl font-bold text-green-800 mb-4">Centrally Located Accommodation</h3>
+            <p className="text-gray-700 mb-4">
+              Our property offers easy access to everything from its prime location. 
+              Enjoy convenient proximity to:
+            </p>
+            <ul className="space-y-2 text-gray-700">
+              <li className="flex items-center gap-2">
+                <MapPin className="w-4 h-4 text-green-600" />
+                <span>Major attractions (3-5 km)</span>
+              </li>
+              <li className="flex items-center gap-2">
+                <MapPin className="w-4 h-4 text-green-600" />
+                <span>Hill stations (3-5 km)</span>
+              </li>
+              <li className="flex items-center gap-2">
+                <MapPin className="w-4 h-4 text-green-600" />
+                <span>City Centre (5-minute walk)</span>
+              </li>
+              <li className="flex items-center gap-2">
+                <MapPin className="w-4 h-4 text-green-600" />
+                <span>Restaurants & Supermarkets</span>
+              </li>
+              <li className="flex items-center gap-2">
+                <MapPin className="w-4 h-4 text-green-600" />
+                <span>Souvenir Shops</span>
+              </li>
+            </ul>
+          </div>
         </div>
         <div className="order-1 lg:order-2 relative">
           <img 
             src="/lovable-uploads/b2dfd9f6-e46d-4180-9aca-bc9e18626736.png"
             alt="Kuppendare Homestay exterior"
-            className="rounded-3xl shadow-2xl w-full h-[400px] object-cover transition-transform duration-500"
+            className="rounded-3xl shadow-2xl w-full h-[400px] object-cover"
           />
           
           {/* Customer Count Badge - Top Right, extending outside */}
@@ -325,6 +353,153 @@ const AttractionsSection = ({ attractions }) => (
             </CardContent>
           </Card>
         ))}
+      </div>
+    </div>
+  </section>
+);
+
+const AdditionalServicesSection = () => (
+  <section className="py-20 px-4 md:px-8 lg:px-16 bg-gradient-to-br from-green-50 to-amber-50">
+    <div className="max-w-7xl mx-auto">
+      <h2 className="text-3xl md:text-4xl font-bold text-center text-green-800 mb-12">
+        Additional Tour Services
+      </h2>
+      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {/* Local Tour Package 1 */}
+        <Card className="p-6 hover:shadow-xl transition-all duration-300 hover:scale-105 rounded-2xl border-0 bg-white/90 backdrop-blur-sm">
+          <div className="bg-green-600 text-white px-4 py-2 rounded-lg mb-4 inline-block">
+            <h3 className="font-bold">Local Tour Package</h3>
+          </div>
+          <ul className="space-y-3">
+            <li className="flex items-start gap-2">
+              <div className="w-2 h-2 bg-green-600 rounded-full mt-2"></div>
+              <div>
+                <span className="font-semibold">Abbey Falls:</span> A breathtaking waterfall
+              </div>
+            </li>
+            <li className="flex items-start gap-2">
+              <div className="w-2 h-2 bg-green-600 rounded-full mt-2"></div>
+              <div>
+                <span className="font-semibold">Raja Tomb:</span> A historical monument
+              </div>
+            </li>
+            <li className="flex items-start gap-2">
+              <div className="w-2 h-2 bg-green-600 rounded-full mt-2"></div>
+              <div>
+                <span className="font-semibold">Fort and Museum:</span> Explore the local history and culture
+              </div>
+            </li>
+            <li className="flex items-start gap-2">
+              <div className="w-2 h-2 bg-green-600 rounded-full mt-2"></div>
+              <div>
+                <span className="font-semibold">Sunny Side Museum:</span> A unique museum showcasing local art and culture
+              </div>
+            </li>
+            <li className="flex items-start gap-2">
+              <div className="w-2 h-2 bg-green-600 rounded-full mt-2"></div>
+              <div>
+                <span className="font-semibold">Omkareshwara Temple:</span> A sacred temple
+              </div>
+            </li>
+            <li className="flex items-start gap-2">
+              <div className="w-2 h-2 bg-green-600 rounded-full mt-2"></div>
+              <div>
+                <span className="font-semibold">Coffee Estate Plantation Tour:</span> Learn about coffee cultivation and enjoy the scenic views
+              </div>
+            </li>
+          </ul>
+        </Card>
+
+        {/* Mandalpatti Package */}
+        <Card className="p-6 hover:shadow-xl transition-all duration-300 hover:scale-105 rounded-2xl border-0 bg-white/90 backdrop-blur-sm">
+          <div className="bg-green-600 text-white px-4 py-2 rounded-lg mb-4 inline-block">
+            <h3 className="font-bold">Mandalpatti Coorg View Point</h3>
+          </div>
+          <div className="space-y-3">
+            <p className="text-sm text-gray-700">
+              <span className="font-semibold">Sunrise and View Point:</span> Early morning 5:30 AM hrs 
+              (The best time to see Sunrise is only early in the morning)
+            </p>
+            <p className="text-sm font-semibold text-red-600">
+              Only 4 wheel drive Allowed
+            </p>
+          </div>
+        </Card>
+
+        {/* Local Tour Package 2 */}
+        <Card className="p-6 hover:shadow-xl transition-all duration-300 hover:scale-105 rounded-2xl border-0 bg-white/90 backdrop-blur-sm">
+          <div className="bg-green-600 text-white px-4 py-2 rounded-lg mb-4 inline-block">
+            <h3 className="font-bold">Local Tour Package 2</h3>
+          </div>
+          <div className="space-y-3 mb-4">
+            <p className="text-sm">
+              <span className="font-semibold">Distance:</span> 50 km one way from Madikeri
+            </p>
+            <p className="font-semibold text-gray-700">Sightseeing Includes:</p>
+          </div>
+          <ul className="space-y-2">
+            <li className="flex items-start gap-2 text-sm">
+              <div className="w-2 h-2 bg-green-600 rounded-full mt-2"></div>
+              <div>
+                <span className="font-semibold">Bhagamandala Temple:</span> Sacred confluence of rivers (Triveni Sangama)
+              </div>
+            </li>
+            <li className="flex items-start gap-2 text-sm">
+              <div className="w-2 h-2 bg-green-600 rounded-full mt-2"></div>
+              <div>
+                <span className="font-semibold">Talacauvery:</span> Source of River Cauvery, scenic hilltop shrine
+              </div>
+            </li>
+            <li className="flex items-start gap-2 text-sm">
+              <div className="w-2 h-2 bg-green-600 rounded-full mt-2"></div>
+              <div>
+                <span className="font-semibold">Optional:</span> En route photo stops, local food/snack break
+              </div>
+            </li>
+          </ul>
+        </Card>
+
+        {/* Local Tour Package 3 */}
+        <Card className="p-6 hover:shadow-xl transition-all duration-300 hover:scale-105 rounded-2xl border-0 bg-white/90 backdrop-blur-sm md:col-span-2 lg:col-span-3">
+          <div className="bg-green-600 text-white px-4 py-2 rounded-lg mb-4 inline-block">
+            <h3 className="font-bold">Local Tour Package 3</h3>
+          </div>
+          <div className="grid md:grid-cols-3 gap-6">
+            <div>
+              <h4 className="font-bold text-green-800 mb-2">Dubare Elephant Camp</h4>
+              <p className="text-sm text-gray-700 mb-2">
+                Activities: Elephant interaction, bathing (if available), short river boat ride
+              </p>
+              <p className="text-sm font-semibold">
+                Suggested Visit Time: Morning (best for elephant activities)
+              </p>
+            </div>
+            
+            <div>
+              <h4 className="font-bold text-green-800 mb-2">Kaveri Nisargadhama</h4>
+              <p className="text-sm text-gray-700 mb-2">
+                Activities: Bamboo groves, hanging bridge, deer park, riverside picnic spots
+              </p>
+            </div>
+            
+            <div>
+              <h4 className="font-bold text-green-800 mb-2">Tibetan Golden Temple</h4>
+              <p className="text-sm text-gray-700 mb-2">
+                (Namdroling Monastery) - One of the largest Tibetan settlements in South India
+              </p>
+              <p className="text-sm text-gray-700">
+                Known for peaceful ambiance and intricate murals
+              </p>
+            </div>
+          </div>
+          
+          <div className="mt-6 pt-4 border-t border-gray-200">
+            <div className="grid md:grid-cols-2 gap-4 text-sm">
+              <p><span className="font-semibold">Vehicle Type:</span> Toyota Innova Or Etios With Driver</p>
+              <p><span className="font-semibold">Passengers count:</span> Total 6 Passengers</p>
+            </div>
+          </div>
+        </Card>
       </div>
     </div>
   </section>
@@ -868,6 +1043,7 @@ const Index = () => {
       />
       <GallerySection roomGalleryImages={roomGalleryImages} />
       <AttractionsSection attractions={attractions} />
+      <AdditionalServicesSection />
       <ReviewsSection reviews={reviews} />
       <WeatherForecastSection forecast={forecast} getWeatherIcon={getWeatherIcon} />
       <ContactSection openWhatsApp={openWhatsApp} />
