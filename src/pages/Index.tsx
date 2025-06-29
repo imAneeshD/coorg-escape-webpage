@@ -1086,7 +1086,7 @@ const Index = () => {
       <ContactSection openWhatsApp={openWhatsApp} />
 
       {/* Sticky CTA for Mobile */}
-      <div className="fixed bottom-0 left-0 right-0 bg-white border-t shadow-lg p-4 md:hidden z-50">
+      {/* <div className="fixed bottom-0 left-0 right-0 bg-white border-t shadow-lg p-4 md:hidden z-50">
         <div className="flex gap-2">
           <Button 
             className="flex-1 bg-green-600 hover:bg-green-700 rounded-full"
@@ -1099,9 +1099,9 @@ const Index = () => {
             variant="outline" 
             className="flex-1 rounded-full"
             onClick={() => openWhatsApp("Hi *there*! I need more info about Kuppendare Homestay https://kuppendarecoorg.com/")}
-            >
+            > */}
             {/* WhatsApp SVG Icon */}
-            <svg
+            {/* <svg
               xmlns="http://www.w3.org/2000/svg"
               width={30}
               height={30}
@@ -1118,8 +1118,8 @@ const Index = () => {
               <path fill="#FFF" d="M1036.898 176.091C923.562 62.677 772.859.185 612.297.114 281.43.114 12.172 269.286 12.039 600.137 12 705.896 39.633 809.13 92.156 900.13L7 1211.067l318.203-83.438c87.672 47.812 186.383 73.008 286.836 73.047h.255.003c330.812 0 600.109-269.219 600.25-600.055.055-160.343-62.328-311.108-175.649-424.53zm-424.601 923.242h-.195c-89.539-.047-177.344-24.086-253.93-69.531l-18.227-10.805-188.828 49.508 50.414-184.039-11.875-18.867c-49.945-79.414-76.312-171.188-76.273-265.422.109-274.992 223.906-498.711 499.102-498.711 133.266.055 258.516 52 352.719 146.266 94.195 94.266 146.031 219.578 145.992 352.852-.118 274.999-223.923 498.749-498.899 498.749z"></path>
             </svg>
             WhatsApp
-            </Button>
-          <Button 
+            </Button> */}
+          {/* <Button 
             variant="outline" 
             className="rounded-full p-3"
             onClick={() => window.open('https://maps.google.com/?q=Block+%2310+Opp:+Patrika+Bhavana+Near+Cauvery+Hall+Madikeri-571201+Kodagu', '_blank')}
@@ -1127,14 +1127,14 @@ const Index = () => {
             <MapPin className="w-4 h-4" />
           </Button>
         </div>
-      </div>
+      </div> */}
 
       {/* WhatsApp Floating Button */}
       <a
         href="https://api.whatsapp.com/send/?phone=918050269791&text=Hi+%2AKuppendare+Homestay%2A%21+I+need+more+info+about+Kuppendare+Homestay+https%3A%2F%2Fkuppendarecoorg.com%2F&type=phone_number&app_absent=0"
         target="_blank"
         rel="noopener noreferrer"
-        className="fixed bottom-20 md:bottom-6 right-6 z-50 bg-green-500 hover:bg-green-600 text-white rounded-full p-4 shadow-lg hover:shadow-xl transition-all duration-300 flex items-center justify-center"
+        className="fixed bottom-10 md:bottom-6 right-6 z-50 bg-green-500 hover:bg-green-600 text-white rounded-full p-4 shadow-lg hover:shadow-xl transition-all duration-300 flex items-center justify-center"
         aria-label="Contact us on WhatsApp"
       >
         {/* WhatsApp SVG Icon */}
@@ -1157,29 +1157,29 @@ const Index = () => {
       </a>
 
       {/* Footer */}
-      <footer className="bg-green-800 text-white py-12 px-4 md:px-8 lg:px-16">
+      <footer className="bg-green-800 text-white py-10 px-4 md:px-8 lg:px-16 w-full">
         <div className="max-w-7xl mx-auto">
-          <div className="flex flex-col items-center text-center">
-            {/* Logo in footer */}
-            <div className="mb-6">
-              <img 
-                src="/lovable-uploads/logo-light.svg" 
-                alt="Kuppendare Homestay Logo" 
-                className="h-16 w-auto object-contain bg-white/10 backdrop-blur-sm rounded-lg p-2"
-              />
-            </div>
-            
-            <h3 className="text-2xl font-bold mb-4">Kuppendare Homestay</h3>
-            <p className="text-green-200 mb-6">
-              Your home away from home in the heart of Coorg
-            </p>
-            <div className="flex justify-center gap-6 text-sm text-green-200">
-              <span>© {new Date().getFullYear()} Kuppendare Homestay</span>
-              <span>|</span>
-              <span>All Rights Reserved</span>
-              <span>|</span>
-              <span>v1.0.0</span>
-            </div>
+          <div className="flex flex-col items-center text-center w-full">
+        {/* Logo in footer */}
+        <div className="mb-4 sm:mb-6 w-full flex justify-center">
+          <img 
+            src="/lovable-uploads/logo-light.svg" 
+            alt="Kuppendare Homestay Logo" 
+            className="h-12 sm:h-16 w-auto object-contain bg-white/10 backdrop-blur-sm rounded-lg p-2"
+          />
+        </div>
+        
+        <h3 className="text-xl sm:text-2xl font-bold mb-2 sm:mb-4 w-full">Kuppendare Homestay</h3>
+        <p className="text-green-200 mb-4 sm:mb-6 w-full text-sm sm:text-base">
+          Your home away from home in the heart of Coorg
+        </p>
+        <div className="flex flex-wrap justify-center gap-2 sm:gap-6 text-xs sm:text-sm text-green-200 w-full">
+          <span>© {new Date().getFullYear()} Kuppendare Homestay</span>
+          <span className="hidden sm:inline">|</span>
+          <span>All Rights Reserved</span>
+          <span className="hidden sm:inline">|</span>
+          <span>v1.0.0</span>
+        </div>
           </div>
         </div>
       </footer>
