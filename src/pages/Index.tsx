@@ -358,11 +358,10 @@ const AdditionalServicesSection = () => (
       </h2>
       <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
         {/* Local Tour Package 1 */}
-        <Card className="group relative overflow-hidden hover:shadow-2xl transition-all duration-500 hover:scale-[1.02] rounded-3xl border-0 bg-gradient-to-br from-white to-green-50/50 backdrop-blur-sm">
-          <div className="absolute inset-0 bg-gradient-to-br from-green-600/5 to-amber-600/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+        <Card className="group relative overflow-hidden hover:shadow-2xl transition-all duration-500 hover:scale-[1.02] rounded-3xl border-0 bg-white/90 backdrop-blur-sm">
           <CardContent className="relative p-8">
             <div className="flex items-center gap-3 mb-6">
-              <div className="bg-gradient-to-r from-green-600 to-green-700 text-white px-4 py-2 rounded-2xl shadow-lg">
+              <div className="bg-green-600 text-white px-4 py-2 rounded-2xl shadow-lg">
                 <h3 className="font-bold text-lg">Local Tour Package</h3>
               </div>
               <div className="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
@@ -378,8 +377,8 @@ const AdditionalServicesSection = () => (
                 { title: "Omkareshwara Temple:", desc: "A sacred temple" },
                 { title: "Coffee Estate Plantation Tour:", desc: "Learn about coffee cultivation and enjoy the scenic views" }
               ].map((item, idx) => (
-                <div key={idx} className="flex items-start gap-3 group/item hover:bg-white/50 rounded-xl p-3 transition-all duration-200">
-                  <div className="w-2 h-2 bg-gradient-to-r from-green-600 to-amber-500 rounded-full mt-2 group-hover/item:scale-125 transition-transform duration-200"></div>
+                <div key={idx} className="flex items-start gap-3 group/item hover:bg-green-50 rounded-xl p-3 transition-all duration-200">
+                  <div className="w-2 h-2 bg-green-600 rounded-full mt-2 group-hover/item:scale-125 transition-transform duration-200"></div>
                   <div className="flex-1">
                     <span className="font-semibold text-green-800">{item.title}</span>
                     <span className="text-gray-700 ml-1">{item.desc}</span>
@@ -391,27 +390,26 @@ const AdditionalServicesSection = () => (
         </Card>
 
         {/* Mandalpatti Package */}
-        <Card className="group relative overflow-hidden hover:shadow-2xl transition-all duration-500 hover:scale-[1.02] rounded-3xl border-0 bg-gradient-to-br from-white to-amber-50/50 backdrop-blur-sm">
-          <div className="absolute inset-0 bg-gradient-to-br from-amber-600/5 to-orange-600/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+        <Card className="group relative overflow-hidden hover:shadow-2xl transition-all duration-500 hover:scale-[1.02] rounded-3xl border-0 bg-white/90 backdrop-blur-sm">
           <CardContent className="relative p-8">
             <div className="flex items-center gap-3 mb-6">
-              <div className="bg-gradient-to-r from-amber-600 to-orange-600 text-white px-4 py-2 rounded-2xl shadow-lg">
+              <div className="bg-green-600 text-white px-4 py-2 rounded-2xl shadow-lg">
                 <h3 className="font-bold text-lg">Mandalpatti Viewpoint</h3>
               </div>
-              <div className="w-12 h-12 bg-amber-100 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                <Sun className="w-6 h-6 text-amber-600" />
+              <div className="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                <Sun className="w-6 h-6 text-green-600" />
               </div>
             </div>
             <div className="space-y-4">
-              <div className="bg-gradient-to-r from-orange-50 to-amber-50 rounded-xl p-4 border-l-4 border-amber-500">
+              <div className="bg-green-50 rounded-xl p-4 border-l-4 border-green-500">
                 <p className="text-gray-800 font-medium mb-2">
-                  <span className="font-bold text-amber-700">Sunrise and View Point:</span>
+                  <span className="font-bold text-green-700">Sunrise and View Point:</span>
                 </p>
                 <p className="text-sm text-gray-700 mb-3">
                   Early morning 5:30 AM hrs (The best time to see Sunrise is only early in the morning)
                 </p>
-                <div className="bg-red-100 border border-red-200 rounded-lg p-3">
-                  <p className="text-sm font-bold text-red-700 flex items-center gap-2">
+                <div className="bg-green-100 border border-green-200 rounded-lg p-3">
+                  <p className="text-sm font-bold text-green-700 flex items-center gap-2">
                     <Car className="w-4 h-4" />
                     Only 4 wheel drive Allowed
                   </p>
@@ -422,34 +420,33 @@ const AdditionalServicesSection = () => (
         </Card>
 
         {/* Local Tour Package 2 */}
-        <Card className="group relative overflow-hidden hover:shadow-2xl transition-all duration-500 hover:scale-[1.02] rounded-3xl border-0 bg-gradient-to-br from-white to-blue-50/50 backdrop-blur-sm">
-          <div className="absolute inset-0 bg-gradient-to-br from-blue-600/5 to-purple-600/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+        <Card className="group relative overflow-hidden hover:shadow-2xl transition-all duration-500 hover:scale-[1.02] rounded-3xl border-0 bg-white/90 backdrop-blur-sm">
           <CardContent className="relative p-8">
             <div className="flex items-center gap-3 mb-6">
-              <div className="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-4 py-2 rounded-2xl shadow-lg">
+              <div className="bg-green-600 text-white px-4 py-2 rounded-2xl shadow-lg">
                 <h3 className="font-bold text-lg">Temple Circuit Tour</h3>
               </div>
-              <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                <Calendar className="w-6 h-6 text-blue-600" />
+              <div className="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                <Calendar className="w-6 h-6 text-green-600" />
               </div>
             </div>
             <div className="space-y-4">
-              <div className="bg-blue-50 rounded-xl p-4 mb-4">
-                <p className="text-sm font-semibold text-blue-800">
+              <div className="bg-green-50 rounded-xl p-4 mb-4">
+                <p className="text-sm font-semibold text-green-800">
                   Distance: 50 km one way from Madikeri
                 </p>
               </div>
               <div className="space-y-3">
-                <h4 className="font-bold text-blue-800 text-sm">Sightseeing Includes:</h4>
+                <h4 className="font-bold text-green-800 text-sm">Sightseeing Includes:</h4>
                 {[
                   { title: "Bhagamandala Temple:", desc: "Sacred confluence of rivers (Triveni Sangama)" },
                   { title: "Talacauvery:", desc: "Source of River Cauvery, scenic hilltop shrine" },
                   { title: "Optional:", desc: "En route photo stops, local food/snack break" }
                 ].map((item, idx) => (
-                  <div key={idx} className="flex items-start gap-3 group/item hover:bg-white/70 rounded-xl p-3 transition-all duration-200">
-                    <div className="w-2 h-2 bg-gradient-to-r from-blue-600 to-purple-500 rounded-full mt-2 group-hover/item:scale-125 transition-transform duration-200"></div>
+                  <div key={idx} className="flex items-start gap-3 group/item hover:bg-green-50 rounded-xl p-3 transition-all duration-200">
+                    <div className="w-2 h-2 bg-green-600 rounded-full mt-2 group-hover/item:scale-125 transition-transform duration-200"></div>
                     <div className="flex-1 text-sm">
-                      <span className="font-semibold text-blue-800">{item.title}</span>
+                      <span className="font-semibold text-green-800">{item.title}</span>
                       <span className="text-gray-700 ml-1">{item.desc}</span>
                     </div>
                   </div>
@@ -460,20 +457,19 @@ const AdditionalServicesSection = () => (
         </Card>
 
         {/* Local Tour Package 3 - Full Width */}
-        <Card className="group relative overflow-hidden hover:shadow-2xl transition-all duration-500 hover:scale-[1.01] rounded-3xl border-0 bg-gradient-to-br from-white to-purple-50/50 backdrop-blur-sm md:col-span-2 lg:col-span-3">
-          <div className="absolute inset-0 bg-gradient-to-br from-purple-600/5 to-pink-600/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+        <Card className="group relative overflow-hidden hover:shadow-2xl transition-all duration-500 hover:scale-[1.01] rounded-3xl border-0 bg-white/90 backdrop-blur-sm md:col-span-2 lg:col-span-3">
           <CardContent className="relative p-8">
             <div className="flex items-center gap-4 mb-8">
-              <div className="bg-gradient-to-r from-purple-600 to-pink-600 text-white px-6 py-3 rounded-2xl shadow-lg">
+              <div className="bg-green-700 text-white px-6 py-3 rounded-2xl shadow-lg">
                 <h3 className="font-bold text-xl">Wildlife & Culture Experience</h3>
               </div>
-              <div className="w-14 h-14 bg-purple-100 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                <Users className="w-7 h-7 text-purple-600" />
+              <div className="w-14 h-14 bg-green-100 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                <Users className="w-7 h-7 text-green-700" />
               </div>
             </div>
             
             <div className="grid md:grid-cols-3 gap-8 mb-8">
-              <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-2xl p-6 border-l-4 border-green-500 hover:shadow-lg transition-shadow duration-300">
+              <div className="bg-green-50 rounded-2xl p-6 border-l-4 border-green-500 hover:shadow-lg transition-shadow duration-300">
                 <div className="flex items-center gap-3 mb-4">
                   <div className="w-10 h-10 bg-green-500 rounded-full flex items-center justify-center">
                     <span className="text-white font-bold text-lg">🐘</span>
@@ -490,45 +486,45 @@ const AdditionalServicesSection = () => (
                 </div>
               </div>
               
-              <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-2xl p-6 border-l-4 border-blue-500 hover:shadow-lg transition-shadow duration-300">
+              <div className="bg-green-50 rounded-2xl p-6 border-l-4 border-green-500 hover:shadow-lg transition-shadow duration-300">
                 <div className="flex items-center gap-3 mb-4">
-                  <div className="w-10 h-10 bg-blue-500 rounded-full flex items-center justify-center">
+                  <div className="w-10 h-10 bg-green-500 rounded-full flex items-center justify-center">
                     <span className="text-white font-bold text-lg">🌿</span>
                   </div>
-                  <h4 className="font-bold text-blue-800 text-lg">Kaveri Nisargadhama</h4>
+                  <h4 className="font-bold text-green-800 text-lg">Kaveri Nisargadhama</h4>
                 </div>
                 <p className="text-sm text-gray-700">
                   Activities: Bamboo groves, hanging bridge, deer park, riverside picnic spots
                 </p>
               </div>
               
-              <div className="bg-gradient-to-br from-amber-50 to-amber-100 rounded-2xl p-6 border-l-4 border-amber-500 hover:shadow-lg transition-shadow duration-300">
+              <div className="bg-green-50 rounded-2xl p-6 border-l-4 border-green-500 hover:shadow-lg transition-shadow duration-300">
                 <div className="flex items-center gap-3 mb-4">
-                  <div className="w-10 h-10 bg-amber-500 rounded-full flex items-center justify-center">
+                  <div className="w-10 h-10 bg-green-500 rounded-full flex items-center justify-center">
                     <span className="text-white font-bold text-lg">🏛️</span>
                   </div>
-                  <h4 className="font-bold text-amber-800 text-lg">Tibetan Golden Temple</h4>
+                  <h4 className="font-bold text-green-800 text-lg">Tibetan Golden Temple</h4>
                 </div>
                 <p className="text-sm text-gray-700 mb-2">
                   (Namdroling Monastery) - One of the largest Tibetan settlements in South India
                 </p>
-                <p className="text-xs text-amber-700 font-medium">
+                <p className="text-xs text-green-700 font-medium">
                   Known for peaceful ambiance and intricate murals
                 </p>
               </div>
             </div>
             
-            <div className="bg-gradient-to-r from-gray-50 to-gray-100 rounded-2xl p-6 border border-gray-200">
+            <div className="bg-gray-50 rounded-2xl p-6 border border-gray-200">
               <div className="grid md:grid-cols-2 gap-6 text-sm">
                 <div className="flex items-center gap-3">
-                  <Car className="w-5 h-5 text-gray-600" />
+                  <Car className="w-5 h-5 text-green-700" />
                   <div>
                     <span className="font-semibold text-gray-800">Vehicle Type:</span>
                     <p className="text-gray-700">Toyota Innova Or Etios With Driver</p>
                   </div>
                 </div>
                 <div className="flex items-center gap-3">
-                  <Users className="w-5 h-5 text-gray-600" />
+                  <Users className="w-5 h-5 text-green-700" />
                   <div>
                     <span className="font-semibold text-gray-800">Capacity:</span>
                     <p className="text-gray-700">Total 6 Passengers</p>
@@ -551,10 +547,10 @@ const ReviewsSection = ({ reviews }) => (
       </h2>
       <div className="grid md:grid-cols-3 gap-8">
         {reviews.map((review, index) => (
-          <Card key={index} className="p-6 text-center hover:shadow-lg transition-all duration-300 hover:scale-105 rounded-2xl border-0 bg-white/80 backdrop-blur-sm">
+          <Card key={index} className="p-6 text-center hover:shadow-lg transition-all duration-300 hover:scale-105 rounded-2xl border-0 bg-white/90 backdrop-blur-sm">
             <div className="flex justify-center mb-4">
               {[...Array(review.rating)].map((_, i) => (
-                <Star key={i} className="w-5 h-5 fill-yellow-400 text-yellow-400" />
+                <Star key={i} className="w-5 h-5 fill-green-500 text-green-500" />
               ))}
             </div>
             <p className="text-gray-700 mb-4 italic">"{review.text}"</p>
@@ -657,28 +653,28 @@ const ContactSection = ({ openWhatsApp }) => {
                   <Mail className="w-5 h-5 text-green-600" />
                 </div>
                 <div>
-                  <p className="font-medium text-gray-800 mb-1">EMAIL</p>
-                  <p className="text-gray-600">coorghomestaykuppendare@gmail.com</p>
+                  <p className="font-medium text-gray-800 mb-1 text-xs sm:text-sm">EMAIL</p>
+                  <p className="text-gray-600 text-xs sm:text-sm break-all">coorghomestaykuppendare@gmail.com</p>
                 </div>
               </div>
-              <div className="flex items-start gap-4">
+                <div className="flex items-start gap-4">
                 <div className="bg-green-100 p-3 rounded-full">
                   <Phone className="w-5 h-5 text-green-600" />
                 </div>
                 <div>
-                  <p className="font-medium text-gray-800 mb-1">PHONE NUMBER</p>
-                  <p className="text-gray-600">+91 80502 69791</p>
+                  <p className="font-medium text-gray-800 mb-1 text-xs sm:text-sm">PHONE NUMBER</p>
+                  <p className="text-gray-600 text-xs sm:text-sm">+91 80502 69791</p>
                 </div>
-              </div>
-              <div className="flex items-start gap-4">
+                </div>
+                <div className="flex items-start gap-4">
                 <div className="bg-green-100 p-3 rounded-full">
                   <MapPin className="w-5 h-5 text-green-600" />
                 </div>
                 <div>
-                  <p className="font-medium text-gray-800 mb-1">ADDRESS</p>
-                  <p className="text-gray-600">Block #10 Opp: Patrika Bhavana Near Cauvery Hall Madikeri-571201 Kodagu</p>
+                  <p className="font-medium text-gray-800 mb-1 text-xs sm:text-sm">ADDRESS</p>
+                  <p className="text-gray-600 text-xs sm:text-sm">Block #10 Opp: Patrika Bhavana Near Cauvery Hall Madikeri-571201 Kodagu</p>
                 </div>
-              </div>
+                </div>
             </div>
             
             <div className="bg-gradient-to-br from-green-50 to-amber-50 p-6 rounded-2xl">
