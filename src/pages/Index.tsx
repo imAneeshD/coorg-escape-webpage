@@ -153,12 +153,12 @@ const AboutSection = () => (
           />
           
           {/* Customer Count Badge - Top Right, responsive for mobile */}
-          <div className="absolute top-2 right-2 md:-top-6 md:-right-6 bg-white/95 backdrop-blur-sm rounded-2xl px-3 py-2 md:px-4 md:py-3 shadow-lg border z-10">
+          {/* <div className="absolute top-2 right-2 md:-top-6 md:-right-6 bg-white/95 backdrop-blur-sm rounded-2xl px-3 py-2 md:px-4 md:py-3 shadow-lg border z-10">
             <div className="text-center">
               <div className="text-lg md:text-2xl font-bold text-orange-500">500+</div>
               <div className="text-xs md:text-sm text-blue-600 font-medium">Happy Customers</div>
             </div>
-          </div>
+          </div> */}
 
           {/* Combined Google & Airbnb Review Card - Bottom Left, responsive for mobile */}
           <div className="absolute bottom-2 left-2 md:-bottom-6 md:-left-6 bg-white/95 backdrop-blur-sm rounded-2xl p-3 md:p-4 shadow-lg border max-w-[140px] md:max-w-[200px] z-10">
@@ -848,7 +848,7 @@ const Index = () => {
       name: "Raja Seat", 
       distance: "1.3 km", 
       duration: "4 mins",
-      image: "/lovable-uploads/b3648351-3dc5-4740-a021-6eaee98c1d00.png",
+      image: "/lovable-uploads/82eb70f0-108c-400c-8c7a-beec2ff32db6.png",
       description: "Famous sunset point with garden views"
     },
     { 
@@ -862,14 +862,14 @@ const Index = () => {
       name: "Tala Kavery", 
       distance: "43 km", 
       duration: "1 hr 18 mins",
-      image: "/lovable-uploads/bb8eaa24-d4a5-431a-ab4f-bf7cfa81af3d.png",
+      image: "/lovable-uploads/b3648351-3dc5-4740-a021-6eaee98c1d00.png",
       description: "Sacred source of River Cauvery"
     },
     { 
       name: "Nisarga Dhama", 
       distance: "27 km", 
       duration: "36 mins",
-      image: "/lovable-uploads/82eb70f0-108c-400c-8c7a-beec2ff32db6.png",
+      image: "/lovable-uploads/bb8eaa24-d4a5-431a-ab4f-bf7cfa81af3d.png",
       description: "Beautiful island formed by River Cauvery"
     },
     { 
