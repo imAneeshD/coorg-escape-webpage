@@ -96,9 +96,9 @@ const AboutSection = () => (
     <div className="max-w-7xl mx-auto">
       <div className="grid lg:grid-cols-2 gap-12 items-center">
         <div className="order-2 lg:order-1">
-          <h2 className="text-3xl md:text-4xl font-bold text-green-800 mb-6">
-            Experience Authentic Coorgi Hospitality
-          </h2>
+            <h2 className="text-3xl md:text-4xl font-bold text-green-800 mb-6">
+            Comfortable Rooms in the Heart of Madikeri
+            </h2>
           <div className="space-y-4 text-gray-700 text-lg leading-relaxed mb-8">
             <p>
               At Kuppendare Homestay, we provide exceptional 24/7 support from our dedicated staff and manager, 
