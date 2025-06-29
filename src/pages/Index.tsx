@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import { Phone, MapPin, MessageCircle, Calendar, Users, Star, Wifi, Car, Thermometer, Mail, ChefHat, Droplets, Cloud, Sun } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -106,60 +105,21 @@ const AboutSection = () => (
               surrounded by lush coffee plantations.
             </p>
           </div>
-
-          {/* Google and Airbnb Reviews */}
-          <div className="grid md:grid-cols-2 gap-4 mb-6">
-            {/* Google Review */}
-            <div className="relative bg-white rounded-2xl shadow-lg p-6 border border-gray-100">
-              <div className="absolute -top-3 -right-3 bg-blue-500 text-white px-3 py-1 rounded-full text-sm font-semibold">
-                200+ Happy Guests
-              </div>
-              <div className="flex items-center gap-3 mb-3">
-                <div className="w-8 h-8 bg-white rounded-full flex items-center justify-center shadow-md">
-                  <span className="text-blue-500 font-bold text-lg">G</span>
-                </div>
-                <span className="font-semibold text-gray-800">Google</span>
-              </div>
-              <div className="flex mb-3">
-                {[...Array(5)].map((_, i) => (
-                  <Star key={i} className="w-4 h-4 fill-yellow-400 text-yellow-400" />
-                ))}
-              </div>
-              <p className="text-gray-600 text-sm italic mb-3">
-                "Exceptional homestay experience! Perfect location, warm hospitality, and beautiful coffee plantation views."
-              </p>
-              <p className="text-xs text-gray-500">- Verified Guest</p>
-            </div>
-
-            {/* Airbnb Review */}
-            <div className="relative bg-white rounded-2xl shadow-lg p-6 border border-gray-100">
-              <div className="absolute -top-3 -right-3 bg-red-500 text-white px-3 py-1 rounded-full text-sm font-semibold">
-                150+ Happy Guests
-              </div>
-              <div className="flex items-center gap-3 mb-3">
-                <div className="w-8 h-8 bg-red-500 rounded-full flex items-center justify-center">
-                  <span className="text-white font-bold text-sm">A</span>
-                </div>
-                <span className="font-semibold text-gray-800">Airbnb</span>
-              </div>
-              <div className="flex mb-3">
-                {[...Array(5)].map((_, i) => (
-                  <Star key={i} className="w-4 h-4 fill-yellow-400 text-yellow-400" />
-                ))}
-              </div>
-              <p className="text-gray-600 text-sm italic mb-3">
-                "Amazing stay in Coorg! Clean rooms, friendly hosts, and convenient location near all attractions."
-              </p>
-              <p className="text-xs text-gray-500">- Verified Guest</p>
-            </div>
-          </div>
         </div>
-        <div className="order-1 lg:order-2">
+        <div className="order-1 lg:order-2 relative">
           <img 
             src="/lovable-uploads/b2dfd9f6-e46d-4180-9aca-bc9e18626736.png"
             alt="Kuppendare Homestay exterior"
             className="rounded-3xl shadow-2xl w-full h-[400px] object-cover hover:scale-105 transition-transform duration-500"
           />
+          {/* 5 Stars overlay on bottom right of image */}
+          <div className="absolute bottom-4 right-4 bg-white/90 backdrop-blur-sm rounded-full px-4 py-2 shadow-lg">
+            <div className="flex items-center gap-1">
+              {[...Array(5)].map((_, i) => (
+                <Star key={i} className="w-4 h-4 fill-yellow-400 text-yellow-400" />
+              ))}
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -397,87 +357,152 @@ const WeatherForecastSection = ({ forecast, getWeatherIcon }) => (
   </section>
 );
 
-const ContactSection = ({ openWhatsApp }) => (
-  <section className="py-20 px-4 md:px-8 lg:px-16 bg-white">
-    <div className="max-w-6xl mx-auto">
-      <h2 className="text-3xl md:text-4xl font-bold text-center text-green-800 mb-12">
-        Plan Your Perfect Stay
-      </h2>
-      <div className="grid lg:grid-cols-2 gap-12">
-        <div>
-          <h3 className="text-2xl font-semibold text-green-800 mb-6">Talk To Us</h3>
-          <div className="space-y-6 mb-8">
-            <div className="flex items-start gap-4">
-              <div className="bg-green-100 p-3 rounded-full">
-                <Mail className="w-5 h-5 text-green-600" />
+const ContactSection = ({ openWhatsApp }) => {
+  const [formData, setFormData] = useState({
+    name: '',
+    phone: '',
+    checkIn: '',
+    guests: '',
+    message: ''
+  });
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({
+      ...prev,
+      [name]: value
+    }));
+  };
+
+  const handleQuickBooking = (e) => {
+    e.preventDefault();
+    const { name, phone, checkIn, guests, message } = formData;
+    
+    let whatsappMessage = `Hi *Kuppendare Homestay*! I would like to make a booking.\n\n`;
+    whatsappMessage += `*Name:* ${name || 'Not provided'}\n`;
+    whatsappMessage += `*Phone:* ${phone || 'Not provided'}\n`;
+    whatsappMessage += `*Check-in Date:* ${checkIn || 'Not provided'}\n`;
+    whatsappMessage += `*Number of Guests:* ${guests || 'Not provided'}\n`;
+    if (message) {
+      whatsappMessage += `*Special Requests:* ${message}\n`;
+    }
+    whatsappMessage += `\nPlease provide availability and pricing details.\n\nhttps://kuppendarecoorg.com/`;
+    
+    openWhatsApp(whatsappMessage);
+  };
+
+  return (
+    <section className="py-20 px-4 md:px-8 lg:px-16 bg-white">
+      <div className="max-w-6xl mx-auto">
+        <h2 className="text-3xl md:text-4xl font-bold text-center text-green-800 mb-12">
+          Plan Your Perfect Stay
+        </h2>
+        <div className="grid lg:grid-cols-2 gap-12">
+          <div>
+            <h3 className="text-2xl font-semibold text-green-800 mb-6">Talk To Us</h3>
+            <div className="space-y-6 mb-8">
+              <div className="flex items-start gap-4">
+                <div className="bg-green-100 p-3 rounded-full">
+                  <Mail className="w-5 h-5 text-green-600" />
+                </div>
+                <div>
+                  <p className="font-medium text-gray-800 mb-1">EMAIL</p>
+                  <p className="text-gray-600">coorghomestaykuppendare@gmail.com</p>
+                </div>
               </div>
-              <div>
-                <p className="font-medium text-gray-800 mb-1">EMAIL</p>
-                <p className="text-gray-600">coorghomestaykuppendare@gmail.com</p>
+              <div className="flex items-start gap-4">
+                <div className="bg-green-100 p-3 rounded-full">
+                  <Phone className="w-5 h-5 text-green-600" />
+                </div>
+                <div>
+                  <p className="font-medium text-gray-800 mb-1">PHONE NUMBER</p>
+                  <p className="text-gray-600">+91 80502 69791</p>
+                </div>
+              </div>
+              <div className="flex items-start gap-4">
+                <div className="bg-green-100 p-3 rounded-full">
+                  <MapPin className="w-5 h-5 text-green-600" />
+                </div>
+                <div>
+                  <p className="font-medium text-gray-800 mb-1">ADDRESS</p>
+                  <p className="text-gray-600">Block #10 Opp: Patrika Bhavana Near Cauvery Hall Madikeri-571201 Kodagu</p>
+                </div>
               </div>
             </div>
-            <div className="flex items-start gap-4">
-              <div className="bg-green-100 p-3 rounded-full">
-                <Phone className="w-5 h-5 text-green-600" />
-              </div>
-              <div>
-                <p className="font-medium text-gray-800 mb-1">PHONE NUMBER</p>
-                <p className="text-gray-600">+91 80502 69791</p>
-              </div>
-            </div>
-            <div className="flex items-start gap-4">
-              <div className="bg-green-100 p-3 rounded-full">
-                <MapPin className="w-5 h-5 text-green-600" />
-              </div>
-              <div>
-                <p className="font-medium text-gray-800 mb-1">ADDRESS</p>
-                <p className="text-gray-600">Block #10 Opp: Patrika Bhavana Near Cauvery Hall Madikeri-571201 Kodagu</p>
-              </div>
+            
+            <div className="bg-gradient-to-br from-green-50 to-amber-50 p-6 rounded-2xl">
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3887.5463!2d75.7306781!3d12.4246579!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ba5018929c45463%3A0xcf7248562c1700f!2sKuppendare+Coorg+Home+Stay+Centrally+Located+Accommodation!5e0!3m2!1sen!2sin!4v1635000000000!5m2!1sen!2sin"
+                width="100%"
+                height="200"
+                style={{ border: 0 }}
+                allowFullScreen={false}
+                loading="lazy"
+                className="rounded-xl"
+              ></iframe>
             </div>
           </div>
           
-          <div className="bg-gradient-to-br from-green-50 to-amber-50 p-6 rounded-2xl">
-            <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3887.5463!2d75.7306781!3d12.4246579!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ba5018929c45463%3A0xcf7248562c1700f!2sKuppendare+Coorg+Home+Stay+Centrally+Located+Accommodation!5e0!3m2!1sen!2sin!4v1635000000000!5m2!1sen!2sin"
-              width="100%"
-              height="200"
-              style={{ border: 0 }}
-              allowFullScreen={false}
-              loading="lazy"
-              className="rounded-xl"
-            ></iframe>
+          <div>
+            <Card className="p-6 rounded-2xl shadow-lg">
+              <h3 className="text-2xl font-semibold text-green-800 mb-6">Quick Booking</h3>
+              <form className="space-y-4" onSubmit={handleQuickBooking}>
+                <div className="grid md:grid-cols-2 gap-4">
+                  <Input 
+                    name="name"
+                    placeholder="Your Name" 
+                    className="rounded-xl" 
+                    value={formData.name}
+                    onChange={handleInputChange}
+                  />
+                  <Input 
+                    name="phone"
+                    placeholder="Phone Number" 
+                    className="rounded-xl" 
+                    value={formData.phone}
+                    onChange={handleInputChange}
+                  />
+                </div>
+                <div className="grid md:grid-cols-2 gap-4">
+                  <div className="relative">
+                    <Calendar className="absolute left-3 top-3 w-4 h-4 text-gray-400" />
+                    <Input 
+                      name="checkIn"
+                      type="date" 
+                      className="pl-10 rounded-xl" 
+                      value={formData.checkIn}
+                      onChange={handleInputChange}
+                    />
+                  </div>
+                  <div className="relative">
+                    <Users className="absolute left-3 top-3 w-4 h-4 text-gray-400" />
+                    <Input 
+                      name="guests"
+                      placeholder="Number of Guests" 
+                      className="pl-10 rounded-xl" 
+                      value={formData.guests}
+                      onChange={handleInputChange}
+                    />
+                  </div>
+                </div>
+                <Textarea 
+                  name="message"
+                  placeholder="Special requests or message" 
+                  className="rounded-xl" 
+                  value={formData.message}
+                  onChange={handleInputChange}
+                />
+                <Button type="submit" className="w-full bg-green-600 hover:bg-green-700 rounded-xl py-3 text-lg">
+                  Book via WhatsApp
+                </Button>
+              </form>
+            </Card>
           </div>
         </div>
-        
-        <div>
-          <Card className="p-6 rounded-2xl shadow-lg">
-            <h3 className="text-2xl font-semibold text-green-800 mb-6">Quick Booking</h3>
-            <form className="space-y-4">
-              <div className="grid md:grid-cols-2 gap-4">
-                <Input placeholder="Your Name" className="rounded-xl" />
-                <Input placeholder="Phone Number" className="rounded-xl" />
-              </div>
-              <div className="grid md:grid-cols-2 gap-4">
-                <div className="relative">
-                  <Calendar className="absolute left-3 top-3 w-4 h-4 text-gray-400" />
-                  <Input type="date" className="pl-10 rounded-xl" />
-                </div>
-                <div className="relative">
-                  <Users className="absolute left-3 top-3 w-4 h-4 text-gray-400" />
-                  <Input placeholder="Number of Guests" className="pl-10 rounded-xl" />
-                </div>
-              </div>
-              <Textarea placeholder="Special requests or message" className="rounded-xl" />
-              <Button className="w-full bg-green-600 hover:bg-green-700 rounded-xl py-3 text-lg">
-                Send Booking Request
-              </Button>
-            </form>
-          </Card>
-        </div>
       </div>
-    </div>
-  </section>
-);
+    </section>
+  );
+};
 
 const Index = () => {
   const [currentWeather, setCurrentWeather] = useState(null);
@@ -842,7 +867,7 @@ const Index = () => {
         href="https://api.whatsapp.com/send/?phone=918050269791&text=Hi+%2AKuppendare+Homestay%2A%21+I+need+more+info+about+Kuppendare+Homestay+https%3A%2F%2Fkuppendarecoorg.com%2F&type=phone_number&app_absent=0"
         target="_blank"
         rel="noopener noreferrer"
-        className="fixed bottom-20 md:bottom-6 right-6 z-50 bg-green-500 hover:bg-green-600 text-white rounded-full p-4 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-110 animate-bounce"
+        className="fixed bottom-20 md:bottom-6 right-6 z-50 bg-green-500 hover:bg-green-600 text-white rounded-full p-4 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-110"
         aria-label="Contact us on WhatsApp"
       >
         <MessageCircle className="w-6 h-6" />
