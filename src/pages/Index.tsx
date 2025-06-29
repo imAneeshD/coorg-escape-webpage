@@ -1151,7 +1151,7 @@ const Index = () => {
             {/* Logo in footer */}
             <div className="mb-6">
               <img 
-                src="/lovable-uploads/logo.svg" 
+                src="/lovable-uploads/logo-light.svg" 
                 alt="Kuppendare Homestay Logo" 
                 className="h-16 w-auto object-contain bg-white/10 backdrop-blur-sm rounded-lg p-2"
               />
