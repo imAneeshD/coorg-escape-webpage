@@ -19,9 +19,9 @@ const HeroSection = ({ currentWeather, getWeatherIcon, handleBookNow, scrollToGa
     {/* Logo in top left corner */}
     <div className="absolute top-6 left-6 z-20">
       <img 
-        src="https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?w=120&h=60&fit=crop" 
+        src="/lovable-uploads/logo.svg" 
         alt="Kuppendare Homestay Logo" 
-        className="h-8 w-auto object-contain"
+        className="h-12 w-auto object-contain bg-white/50 backdrop-blur-sm rounded-lg p-2"
       />
     </div>
     
@@ -110,8 +110,7 @@ const AboutSection = () => (
             </p>
             <p>
               Whether you're friends seeking adventure, a family looking for quality time together, or a solo traveler 
-              in search of peace, our homestay provides the perfect blend of modern amenities and natural beauty 
-              surrounded by lush coffee plantations.
+              in search of peace, our homestay provides the perfect blend of modern amenities.
             </p>
           </div>
           
@@ -630,7 +629,7 @@ const ContactSection = ({ openWhatsApp }) => {
     e.preventDefault();
     const { name, phone, checkIn, guests, message } = formData;
     
-    let whatsappMessage = `Hi *Kuppendare Homestay*! I would like to make a booking.\n\n`;
+    let whatsappMessage = `Hi *there*! I would like to make a booking.\n\n`;
     whatsappMessage += `*Name:* ${name || 'Not provided'}\n`;
     whatsappMessage += `*Phone:* ${phone || 'Not provided'}\n`;
     whatsappMessage += `*Check-in Date:* ${checkIn || 'Not provided'}\n`;
@@ -770,13 +769,13 @@ const Index = () => {
   const roomGalleryImages = [
     {
       src: "/lovable-uploads/60b4c27a-794d-43ba-b99a-4cf1dc3bb1c1.png",
-      alt: "Deluxe Garden View Room",
-      title: "Deluxe Garden View"
+      alt: "Living Room with Sofa",
+      title: "Living Room wisth Sofa"
     },
     {
       src: "/lovable-uploads/55bcf1c3-26b5-4c1a-a045-78a65bcc1d34.png",
-      alt: "Premium Coffee Estate Room",
-      title: "Premium Coffee Estate"
+      alt: "Premium Living Space",
+      title: "Premium Living Space"
     },
     {
       src: "/lovable-uploads/ed4528ea-633a-4eab-8be8-f2a165977ea9.png",
@@ -822,20 +821,20 @@ const Index = () => {
 
   const rooms = [
     {
-      name: "Deluxe Garden View",
+      name: "Companions Room",
       image: "/lovable-uploads/60b4c27a-794d-43ba-b99a-4cf1dc3bb1c1.png",
       amenities: ["wifi", "hot-water", "kitchen", "cab-service"]
     },
     {
-      name: "Premium Coffee Estate",
+      name: "Family Comfort Room",
       image: "/lovable-uploads/55bcf1c3-26b5-4c1a-a045-78a65bcc1d34.png",
       amenities: ["wifi", "hot-water", "kitchen", "cab-service"]
     },
-    {
-      name: "Family Cottage",
-      image: "/lovable-uploads/ed4528ea-633a-4eab-8be8-f2a165977ea9.png",
-      amenities: ["wifi", "hot-water", "kitchen", "cab-service"]
-    }
+    // {
+    //   name: "Family Cottage",
+    //   image: "/lovable-uploads/ed4528ea-633a-4eab-8be8-f2a165977ea9.png",
+    //   amenities: ["wifi", "hot-water", "kitchen", "cab-service"]
+    // }
   ];
 
   const attractions = [
@@ -1133,9 +1132,9 @@ const Index = () => {
             {/* Logo in footer */}
             <div className="mb-6">
               <img 
-                src="https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?w=160&h=80&fit=crop" 
+                src="/lovable-uploads/logo.svg" 
                 alt="Kuppendare Homestay Logo" 
-                className="h-12 w-auto object-contain bg-white/10 backdrop-blur-sm rounded-lg p-2"
+                className="h-16 w-auto object-contain bg-white/10 backdrop-blur-sm rounded-lg p-2"
               />
             </div>
             
