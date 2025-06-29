@@ -91,7 +91,7 @@ const AboutSection = () => (
           <h2 className="text-3xl md:text-4xl font-bold text-green-800 mb-6">
             Experience Authentic Coorgi Hospitality
           </h2>
-          <div className="space-y-4 text-gray-700 text-lg leading-relaxed">
+          <div className="space-y-4 text-gray-700 text-lg leading-relaxed mb-8">
             <p>
               At Kuppendare Homestay, we provide exceptional 24/7 support from our dedicated staff and manager, 
               ensuring your comfort throughout your stay in the heart of Madikeri.
@@ -105,6 +105,53 @@ const AboutSection = () => (
               in search of peace, our homestay provides the perfect blend of modern amenities and natural beauty 
               surrounded by lush coffee plantations.
             </p>
+          </div>
+
+          {/* Google and Airbnb Reviews */}
+          <div className="grid md:grid-cols-2 gap-4 mb-6">
+            {/* Google Review */}
+            <div className="relative bg-white rounded-2xl shadow-lg p-6 border border-gray-100">
+              <div className="absolute -top-3 -right-3 bg-blue-500 text-white px-3 py-1 rounded-full text-sm font-semibold">
+                200+ Happy Guests
+              </div>
+              <div className="flex items-center gap-3 mb-3">
+                <div className="w-8 h-8 bg-white rounded-full flex items-center justify-center shadow-md">
+                  <span className="text-blue-500 font-bold text-lg">G</span>
+                </div>
+                <span className="font-semibold text-gray-800">Google</span>
+              </div>
+              <div className="flex mb-3">
+                {[...Array(5)].map((_, i) => (
+                  <Star key={i} className="w-4 h-4 fill-yellow-400 text-yellow-400" />
+                ))}
+              </div>
+              <p className="text-gray-600 text-sm italic mb-3">
+                "Exceptional homestay experience! Perfect location, warm hospitality, and beautiful coffee plantation views."
+              </p>
+              <p className="text-xs text-gray-500">- Verified Guest</p>
+            </div>
+
+            {/* Airbnb Review */}
+            <div className="relative bg-white rounded-2xl shadow-lg p-6 border border-gray-100">
+              <div className="absolute -top-3 -right-3 bg-red-500 text-white px-3 py-1 rounded-full text-sm font-semibold">
+                150+ Happy Guests
+              </div>
+              <div className="flex items-center gap-3 mb-3">
+                <div className="w-8 h-8 bg-red-500 rounded-full flex items-center justify-center">
+                  <span className="text-white font-bold text-sm">A</span>
+                </div>
+                <span className="font-semibold text-gray-800">Airbnb</span>
+              </div>
+              <div className="flex mb-3">
+                {[...Array(5)].map((_, i) => (
+                  <Star key={i} className="w-4 h-4 fill-yellow-400 text-yellow-400" />
+                ))}
+              </div>
+              <p className="text-gray-600 text-sm italic mb-3">
+                "Amazing stay in Coorg! Clean rooms, friendly hosts, and convenient location near all attractions."
+              </p>
+              <p className="text-xs text-gray-500">- Verified Guest</p>
+            </div>
           </div>
         </div>
         <div className="order-1 lg:order-2">
