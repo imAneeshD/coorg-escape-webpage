@@ -1174,9 +1174,11 @@ const Index = () => {
               Your home away from home in the heart of Coorg
             </p>
             <div className="flex justify-center gap-6 text-sm text-green-200">
-              <span>© 2024 Kuppendare Homestay</span>
+              <span>© {new Date().getFullYear()} Kuppendare Homestay</span>
               <span>|</span>
               <span>All Rights Reserved</span>
+              <span>|</span>
+              <span>v1.0.0</span>
             </div>
           </div>
         </div>
