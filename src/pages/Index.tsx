@@ -17,6 +17,17 @@ const HeroSection = ({ currentWeather, getWeatherIcon, handleBookNow, scrollToGa
       <div className="absolute inset-0 bg-black/70"></div>
     </div>
     
+    {/* Logo in top left corner */}
+    <div className="absolute top-6 left-6 z-20">
+      <div className="bg-white/10 backdrop-blur-md border border-white/20 rounded-xl p-3 hover:bg-white/15 transition-all duration-300">
+        <img 
+          src="https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?w=120&h=60&fit=crop" 
+          alt="Kuppendare Homestay Logo" 
+          className="h-8 w-auto object-contain"
+        />
+      </div>
+    </div>
+    
     <div className="relative z-10 text-center text-white px-4 max-w-6xl mx-auto">
       <div className="bg-green-600/20 backdrop-blur-sm border border-green-400/30 rounded-xl px-3 py-1 mb-6 inline-block">
         <p className="text-xs font-medium flex items-center gap-2">
@@ -894,7 +905,7 @@ const Index = () => {
         href="https://api.whatsapp.com/send/?phone=918050269791&text=Hi+%2AKuppendare+Homestay%2A%21+I+need+more+info+about+Kuppendare+Homestay+https%3A%2F%2Fkuppendarecoorg.com%2F&type=phone_number&app_absent=0"
         target="_blank"
         rel="noopener noreferrer"
-        className="fixed bottom-20 md:bottom-6 right-6 z-50 bg-green-500 hover:bg-green-600 text-white rounded-full p-4 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-110"
+        className="fixed bottom-20 md:bottom-6 right-6 z-50 bg-green-500 hover:bg-green-600 text-white rounded-full p-4 shadow-lg hover:shadow-xl transition-all duration-300"
         aria-label="Contact us on WhatsApp"
       >
         <MessageCircle className="w-6 h-6" />
@@ -902,15 +913,26 @@ const Index = () => {
 
       {/* Footer */}
       <footer className="bg-green-800 text-white py-12 px-4 md:px-8 lg:px-16">
-        <div className="max-w-7xl mx-auto text-center">
-          <h3 className="text-2xl font-bold mb-4">Kuppendare Homestay</h3>
-          <p className="text-green-200 mb-6">
-            Your home away from home in the heart of Coorg
-          </p>
-          <div className="flex justify-center gap-6 text-sm text-green-200">
-            <span>© 2024 Kuppendare Homestay</span>
-            <span>|</span>
-            <span>All Rights Reserved</span>
+        <div className="max-w-7xl mx-auto">
+          <div className="flex flex-col items-center text-center">
+            {/* Logo in footer */}
+            <div className="mb-6">
+              <img 
+                src="https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?w=160&h=80&fit=crop" 
+                alt="Kuppendare Homestay Logo" 
+                className="h-12 w-auto object-contain bg-white/10 backdrop-blur-sm rounded-lg p-2"
+              />
+            </div>
+            
+            <h3 className="text-2xl font-bold mb-4">Kuppendare Homestay</h3>
+            <p className="text-green-200 mb-6">
+              Your home away from home in the heart of Coorg
+            </p>
+            <div className="flex justify-center gap-6 text-sm text-green-200">
+              <span>© 2024 Kuppendare Homestay</span>
+              <span>|</span>
+              <span>All Rights Reserved</span>
+            </div>
           </div>
         </div>
       </footer>
