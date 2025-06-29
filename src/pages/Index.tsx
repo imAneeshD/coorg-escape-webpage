@@ -694,60 +694,63 @@ const ContactSection = ({ openWhatsApp }) => {
             </div>
           </div>
           
-            <div className="w-full max-w-md mx-auto sm:max-w-none">
-            <Card className="p-4 sm:p-6 rounded-2xl shadow-lg">
-              <h3 className="text-xl sm:text-2xl font-semibold text-green-800 mb-4 sm:mb-6">Quick Booking</h3>
-              <form className="space-y-3 sm:space-y-4" onSubmit={handleQuickBooking}>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
-                <Input 
-                name="name"
-                placeholder="Your Name" 
-                className="rounded-xl text-sm sm:text-base" 
-                value={formData.name}
-                onChange={handleInputChange}
-                />
-                <Input 
-                name="phone"
-                placeholder="Phone Number" 
-                className="rounded-xl text-sm sm:text-base" 
-                value={formData.phone}
-                onChange={handleInputChange}
-                />
-              </div>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
-                <div className="relative">
-                <Calendar className="absolute left-3 top-3 w-4 h-4 text-gray-400" />
-                <Input 
-                  name="checkIn"
-                  type="date" 
-                  className="pl-10 rounded-xl text-sm sm:text-base" 
-                  value={formData.checkIn}
-                  onChange={handleInputChange}
-                />
-                </div>
-                <div className="relative">
-                <Users className="absolute left-3 top-3 w-4 h-4 text-gray-400" />
-                <Input 
-                  name="guests"
-                  placeholder="Number of Guests" 
-                  className="pl-10 rounded-xl text-sm sm:text-base" 
-                  value={formData.guests}
-                  onChange={handleInputChange}
-                />
-                </div>
-              </div>
-              <Textarea 
-                name="message"
-                placeholder="Special requests or message" 
-                className="rounded-xl text-sm sm:text-base" 
-                value={formData.message}
-                onChange={handleInputChange}
-              />
-              <Button type="submit" className="w-full bg-green-600 hover:bg-green-700 rounded-xl py-2 sm:py-3 text-base sm:text-lg">
-                Book via WhatsApp
-              </Button>
-              </form>
-            </Card>
+            <div className="w-full max-w-md mx-auto sm:max-w-none px-1 sm:px-0">
+              <Card className="p-3 sm:p-6 rounded-2xl shadow-lg">
+                <h3 className="text-lg sm:text-2xl font-semibold text-green-800 mb-3 sm:mb-6">Quick Booking</h3>
+                <form className="space-y-2 sm:space-y-4" onSubmit={handleQuickBooking}>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-4">
+                    <Input 
+                      name="name"
+                      placeholder="Your Name" 
+                      className="rounded-xl text-xs sm:text-base"
+                      value={formData.name}
+                      onChange={handleInputChange}
+                    />
+                    <Input 
+                      name="phone"
+                      placeholder="Phone Number" 
+                      className="rounded-xl text-xs sm:text-base"
+                      value={formData.phone}
+                      onChange={handleInputChange}
+                    />
+                  </div>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-4">
+                    <div className="relative">
+                      <Calendar className="absolute left-3 top-2.5 w-4 h-4 text-gray-400" />
+                      <Input 
+                        name="checkIn"
+                        type="date" 
+                        className="pl-10 rounded-xl text-xs sm:text-base"
+                        value={formData.checkIn}
+                        onChange={handleInputChange}
+                        style={{ minWidth: 0 }}
+                      />
+                    </div>
+                    <div className="relative">
+                      <Users className="absolute left-3 top-2.5 w-4 h-4 text-gray-400" />
+                      <Input 
+                        name="guests"
+                        placeholder="Number of Guests" 
+                        className="pl-10 rounded-xl text-xs sm:text-base"
+                        value={formData.guests}
+                        onChange={handleInputChange}
+                        style={{ minWidth: 0 }}
+                      />
+                    </div>
+                  </div>
+                  <Textarea 
+                    name="message"
+                    placeholder="Special requests or message" 
+                    className="rounded-xl text-xs sm:text-base"
+                    value={formData.message}
+                    onChange={handleInputChange}
+                    rows={2}
+                  />
+                  <Button type="submit" className="w-full bg-green-600 hover:bg-green-700 rounded-xl py-2 sm:py-3 text-base sm:text-lg">
+                    Book via WhatsApp
+                  </Button>
+                </form>
+              </Card>
             </div>
         </div>
       </div>
