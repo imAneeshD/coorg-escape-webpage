@@ -1044,12 +1044,12 @@ const Index = () => {
   };
 
   const handleBookNow = () => {
-    const message = "Hi *Kuppendare Homestay*! I would like to book a room. Please provide me with availability and more details. https://kuppendarecoorg.com/";
+    const message = "Hi *there*! I would like to book a room. Please provide me with availability and more details. https://kuppendarecoorg.com/";
     openWhatsApp(message);
   };
 
   const handleRoomBooking = (roomName: string) => {
-    const message = `Hi *Kuppendare Homestay*! I'm interested in booking the ${roomName} room. Please provide availability and more details. https://kuppendarecoorg.com/`;
+    const message = `Hi *there*! I'm interested in booking the ${roomName} room. Please provide availability and more details. https://kuppendarecoorg.com/`;
     openWhatsApp(message);
   };
 
@@ -1095,14 +1095,24 @@ const Index = () => {
             <Phone className="w-4 h-4 mr-2" />
             Call Now
           </Button>
-          <Button 
+            <Button 
             variant="outline" 
             className="flex-1 rounded-full"
-            onClick={() => openWhatsApp("Hi *Kuppendare Homestay*! I need more info about Kuppendare Homestay https://kuppendarecoorg.com/")}
-          >
-            <MessageCircle className="w-4 h-4 mr-2" />
+            onClick={() => openWhatsApp("Hi *there*! I need more info about Kuppendare Homestay https://kuppendarecoorg.com/")}
+            >
+            {/* WhatsApp SVG Icon */}
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width={16}
+              height={16}
+              viewBox="0 0 32 32"
+              fill="currentColor"
+              className="w-4 h-4 mr-2"
+            >
+              <path d="M16.001 3.2c-7.06 0-12.8 5.74-12.8 12.8 0 2.26.61 4.47 1.77 6.41l-1.87 6.85a1.07 1.07 0 0 0 1.31 1.31l6.85-1.87a12.77 12.77 0 0 0 6.41 1.77c7.06 0 12.8-5.74 12.8-12.8s-5.74-12.8-12.8-12.8zm0 23.04c-2.01 0-3.99-.54-5.7-1.56a1.07 1.07 0 0 0-.74-.11l-5.13 1.4 1.4-5.13a1.07 1.07 0 0 0-.11-.74A10.65 10.65 0 1 1 16 26.24zm6.02-7.37c-.33-.17-1.97-.97-2.27-1.08-.3-.11-.52-.17-.74.17-.22.33-.85 1.08-1.04 1.3-.19.22-.38.25-.71.08-.33-.17-1.39-.51-2.65-1.62-.98-.87-1.64-1.94-1.83-2.27-.19-.33-.02-.51.15-.68.15-.15.33-.38.5-.57.17-.19.22-.33.33-.55.11-.22.06-.41-.03-.58-.09-.17-.74-1.78-1.01-2.44-.27-.65-.54-.56-.74-.57-.19-.01-.41-.01-.63-.01-.22 0-.58.08-.88.41-.3.33-1.15 1.12-1.15 2.73 0 1.61 1.18 3.17 1.34 3.39.17.22 2.32 3.56 5.63 4.85.79.31 1.41.5 1.89.64.79.25 1.51.22 2.08.13.64-.1 1.97-.8 2.25-1.57.28-.77.28-1.43.2-1.57-.08-.14-.3-.22-.63-.39z"/>
+            </svg>
             WhatsApp
-          </Button>
+            </Button>
           <Button 
             variant="outline" 
             className="rounded-full p-3"
@@ -1118,10 +1128,20 @@ const Index = () => {
         href="https://api.whatsapp.com/send/?phone=918050269791&text=Hi+%2AKuppendare+Homestay%2A%21+I+need+more+info+about+Kuppendare+Homestay+https%3A%2F%2Fkuppendarecoorg.com%2F&type=phone_number&app_absent=0"
         target="_blank"
         rel="noopener noreferrer"
-        className="fixed bottom-20 md:bottom-6 right-6 z-50 bg-green-500 hover:bg-green-600 text-white rounded-full p-4 shadow-lg hover:shadow-xl transition-all duration-300"
+        className="fixed bottom-20 md:bottom-6 right-6 z-50 bg-green-500 hover:bg-green-600 text-white rounded-full p-4 shadow-lg hover:shadow-xl transition-all duration-300 flex items-center justify-center"
         aria-label="Contact us on WhatsApp"
       >
-        <MessageCircle className="w-6 h-6" />
+        {/* WhatsApp SVG Icon */}
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width={28}
+          height={28}
+          viewBox="0 0 32 32"
+          fill="currentColor"
+          className="w-7 h-7"
+        >
+          <path d="M16.001 3.2c-7.06 0-12.8 5.74-12.8 12.8 0 2.26.61 4.47 1.77 6.41l-1.87 6.85a1.07 1.07 0 0 0 1.31 1.31l6.85-1.87a12.77 12.77 0 0 0 6.41 1.77c7.06 0 12.8-5.74 12.8-12.8s-5.74-12.8-12.8-12.8zm0 23.04c-2.01 0-3.99-.54-5.7-1.56a1.07 1.07 0 0 0-.74-.11l-5.13 1.4 1.4-5.13a1.07 1.07 0 0 0-.11-.74A10.65 10.65 0 1 1 16 26.24zm6.02-7.37c-.33-.17-1.97-.97-2.27-1.08-.3-.11-.52-.17-.74.17-.22.33-.85 1.08-1.04 1.3-.19.22-.38.25-.71.08-.33-.17-1.39-.51-2.65-1.62-.98-.87-1.64-1.94-1.83-2.27-.19-.33-.02-.51.15-.68.15-.15.33-.38.5-.57.17-.19.22-.33.33-.55.11-.22.06-.41-.03-.58-.09-.17-.74-1.78-1.01-2.44-.27-.65-.54-.56-.74-.57-.19-.01-.41-.01-.63-.01-.22 0-.58.08-.88.41-.3.33-1.15 1.12-1.15 2.73 0 1.61 1.18 3.17 1.34 3.39.17.22 2.32 3.56 5.63 4.85.79.31 1.41.5 1.89.64.79.25 1.51.22 2.08.13.64-.1 1.97-.8 2.25-1.57.28-.77.28-1.43.2-1.57-.08-.14-.3-.22-.63-.39z"/>
+        </svg>
       </a>
 
       {/* Footer */}
