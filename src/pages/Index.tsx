@@ -149,32 +149,32 @@ const AboutSection = () => (
           <img 
             src="/lovable-uploads/b2dfd9f6-e46d-4180-9aca-bc9e18626736.png"
             alt="Kuppendare Homestay exterior"
-            className="rounded-3xl shadow-2xl w-full h-[400px] object-cover"
+            className="rounded-3xl shadow-2xl w-full h-[300px] md:h-[400px] object-cover"
           />
           
-          {/* Customer Count Badge - Top Right, extending outside */}
-          <div className="absolute -top-6 -right-6 bg-white/95 backdrop-blur-sm rounded-2xl px-4 py-3 shadow-lg border">
+          {/* Customer Count Badge - Top Right, responsive for mobile */}
+          <div className="absolute top-2 right-2 md:-top-6 md:-right-6 bg-white/95 backdrop-blur-sm rounded-2xl px-3 py-2 md:px-4 md:py-3 shadow-lg border z-10">
             <div className="text-center">
-              <div className="text-2xl font-bold text-orange-500">500+</div>
-              <div className="text-sm text-blue-600 font-medium">Happy Customers</div>
+              <div className="text-lg md:text-2xl font-bold text-orange-500">500+</div>
+              <div className="text-xs md:text-sm text-blue-600 font-medium">Happy Customers</div>
             </div>
           </div>
 
-          {/* Combined Google & Airbnb Review Card - Bottom Left, extending outside */}
-          <div className="absolute -bottom-6 -left-6 bg-white/95 backdrop-blur-sm rounded-2xl p-4 shadow-lg border max-w-[200px]">
-            <div className="flex items-center gap-1 mb-3">
+          {/* Combined Google & Airbnb Review Card - Bottom Left, responsive for mobile */}
+          <div className="absolute bottom-2 left-2 md:-bottom-6 md:-left-6 bg-white/95 backdrop-blur-sm rounded-2xl p-3 md:p-4 shadow-lg border max-w-[140px] md:max-w-[200px] z-10">
+            <div className="flex items-center gap-1 mb-2 md:mb-3">
               {[...Array(5)].map((_, i) => (
-                <Star key={i} className="w-3 h-3 fill-orange-400 text-orange-400" />
+          <Star key={i} className="w-2.5 h-2.5 md:w-3 md:h-3 fill-orange-400 text-orange-400" />
               ))}
             </div>
-            <div className="space-y-2">
-              <div className="flex items-center gap-2">
-                <img src="/lovable-uploads/b1b7d931-adb2-4a41-8d4f-6fb4d1ab0344.png" alt="Google" className="w-4 h-4" />
-                <p className="text-xs text-gray-700 font-medium">Google Reviews</p>
+            <div className="space-y-1 md:space-y-2">
+              <div className="flex items-center gap-1 md:gap-2">
+          <img src="/lovable-uploads/b1b7d931-adb2-4a41-8d4f-6fb4d1ab0344.png" alt="Google" className="w-3 h-3 md:w-4 md:h-4" />
+          <p className="text-[10px] md:text-xs text-gray-700 font-medium">Google Reviews</p>
               </div>
-              <div className="flex items-center gap-2">
-                <img src="/lovable-uploads/17fcacf1-30aa-420a-a7fc-e030e75295cd.png" alt="Airbnb" className="w-4 h-4" />
-                <p className="text-xs text-gray-700 font-medium">Airbnb Reviews</p>
+              <div className="flex items-center gap-1 md:gap-2">
+          <img src="/lovable-uploads/17fcacf1-30aa-420a-a7fc-e030e75295cd.png" alt="Airbnb" className="w-3 h-3 md:w-4 md:h-4" />
+          <p className="text-[10px] md:text-xs text-gray-700 font-medium">Airbnb Reviews</p>
               </div>
             </div>
           </div>
@@ -694,61 +694,61 @@ const ContactSection = ({ openWhatsApp }) => {
             </div>
           </div>
           
-          <div>
-            <Card className="p-6 rounded-2xl shadow-lg">
-              <h3 className="text-2xl font-semibold text-green-800 mb-6">Quick Booking</h3>
-              <form className="space-y-4" onSubmit={handleQuickBooking}>
-                <div className="grid md:grid-cols-2 gap-4">
-                  <Input 
-                    name="name"
-                    placeholder="Your Name" 
-                    className="rounded-xl" 
-                    value={formData.name}
-                    onChange={handleInputChange}
-                  />
-                  <Input 
-                    name="phone"
-                    placeholder="Phone Number" 
-                    className="rounded-xl" 
-                    value={formData.phone}
-                    onChange={handleInputChange}
-                  />
-                </div>
-                <div className="grid md:grid-cols-2 gap-4">
-                  <div className="relative">
-                    <Calendar className="absolute left-3 top-3 w-4 h-4 text-gray-400" />
-                    <Input 
-                      name="checkIn"
-                      type="date" 
-                      className="pl-10 rounded-xl" 
-                      value={formData.checkIn}
-                      onChange={handleInputChange}
-                    />
-                  </div>
-                  <div className="relative">
-                    <Users className="absolute left-3 top-3 w-4 h-4 text-gray-400" />
-                    <Input 
-                      name="guests"
-                      placeholder="Number of Guests" 
-                      className="pl-10 rounded-xl" 
-                      value={formData.guests}
-                      onChange={handleInputChange}
-                    />
-                  </div>
-                </div>
-                <Textarea 
-                  name="message"
-                  placeholder="Special requests or message" 
-                  className="rounded-xl" 
-                  value={formData.message}
+            <div className="w-full max-w-md mx-auto sm:max-w-none">
+            <Card className="p-4 sm:p-6 rounded-2xl shadow-lg">
+              <h3 className="text-xl sm:text-2xl font-semibold text-green-800 mb-4 sm:mb-6">Quick Booking</h3>
+              <form className="space-y-3 sm:space-y-4" onSubmit={handleQuickBooking}>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
+                <Input 
+                name="name"
+                placeholder="Your Name" 
+                className="rounded-xl text-sm sm:text-base" 
+                value={formData.name}
+                onChange={handleInputChange}
+                />
+                <Input 
+                name="phone"
+                placeholder="Phone Number" 
+                className="rounded-xl text-sm sm:text-base" 
+                value={formData.phone}
+                onChange={handleInputChange}
+                />
+              </div>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
+                <div className="relative">
+                <Calendar className="absolute left-3 top-3 w-4 h-4 text-gray-400" />
+                <Input 
+                  name="checkIn"
+                  type="date" 
+                  className="pl-10 rounded-xl text-sm sm:text-base" 
+                  value={formData.checkIn}
                   onChange={handleInputChange}
                 />
-                <Button type="submit" className="w-full bg-green-600 hover:bg-green-700 rounded-xl py-3 text-lg">
-                  Book via WhatsApp
-                </Button>
+                </div>
+                <div className="relative">
+                <Users className="absolute left-3 top-3 w-4 h-4 text-gray-400" />
+                <Input 
+                  name="guests"
+                  placeholder="Number of Guests" 
+                  className="pl-10 rounded-xl text-sm sm:text-base" 
+                  value={formData.guests}
+                  onChange={handleInputChange}
+                />
+                </div>
+              </div>
+              <Textarea 
+                name="message"
+                placeholder="Special requests or message" 
+                className="rounded-xl text-sm sm:text-base" 
+                value={formData.message}
+                onChange={handleInputChange}
+              />
+              <Button type="submit" className="w-full bg-green-600 hover:bg-green-700 rounded-xl py-2 sm:py-3 text-base sm:text-lg">
+                Book via WhatsApp
+              </Button>
               </form>
             </Card>
-          </div>
+            </div>
         </div>
       </div>
     </section>
