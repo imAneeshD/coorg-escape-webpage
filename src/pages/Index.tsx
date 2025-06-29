@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from "react";
 import { Phone, MapPin, MessageCircle, Calendar, Users, Star, Wifi, Car, Thermometer, Mail, ChefHat, Droplets, Cloud, Sun } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -110,28 +111,41 @@ const AboutSection = () => (
           <img 
             src="/lovable-uploads/b2dfd9f6-e46d-4180-9aca-bc9e18626736.png"
             alt="Kuppendare Homestay exterior"
-            className="rounded-3xl shadow-2xl w-full h-[400px] object-cover hover:scale-105 transition-transform duration-500"
+            className="rounded-3xl shadow-2xl w-full h-[400px] object-cover transition-transform duration-500"
           />
           
-          {/* Customer Count Badge - Top Right */}
-          <div className="absolute top-4 right-4 bg-white/95 backdrop-blur-sm rounded-2xl px-4 py-3 shadow-lg border">
+          {/* Customer Count Badge - Top Right, extending outside */}
+          <div className="absolute -top-6 -right-6 bg-white/95 backdrop-blur-sm rounded-2xl px-4 py-3 shadow-lg border">
             <div className="text-center">
               <div className="text-2xl font-bold text-orange-500">500+</div>
               <div className="text-sm text-blue-600 font-medium">Happy Customers</div>
             </div>
           </div>
 
-          {/* Review Card - Bottom Left */}
-          <div className="absolute bottom-4 left-4 bg-white/95 backdrop-blur-sm rounded-2xl p-4 shadow-lg border max-w-[200px]">
+          {/* Google Review Card - Bottom Left, extending outside */}
+          <div className="absolute -bottom-6 -left-6 bg-white/95 backdrop-blur-sm rounded-2xl p-4 shadow-lg border max-w-[180px]">
             <div className="flex items-center gap-1 mb-2">
               {[...Array(5)].map((_, i) => (
-                <Star key={i} className="w-4 h-4 fill-orange-400 text-orange-400" />
+                <Star key={i} className="w-3 h-3 fill-orange-400 text-orange-400" />
               ))}
             </div>
-            <p className="text-sm text-gray-700 mb-2 font-medium">
-              "Amazing hospitality and beautiful location!"
-            </p>
-            <p className="text-xs text-gray-500">- Priya S.</p>
+            <div className="flex items-center gap-2 mb-1">
+              <img src="/lovable-uploads/b1b7d931-adb2-4a41-8d4f-6fb4d1ab0344.png" alt="Google" className="w-4 h-4" />
+              <p className="text-xs text-gray-700 font-medium">5 stars on Google</p>
+            </div>
+          </div>
+
+          {/* Airbnb Review Card - Bottom Right, extending outside */}
+          <div className="absolute -bottom-6 -right-6 bg-white/95 backdrop-blur-sm rounded-2xl p-4 shadow-lg border max-w-[180px]">
+            <div className="flex items-center gap-1 mb-2">
+              {[...Array(5)].map((_, i) => (
+                <Star key={i} className="w-3 h-3 fill-orange-400 text-orange-400" />
+              ))}
+            </div>
+            <div className="flex items-center gap-2 mb-1">
+              <img src="/lovable-uploads/17fcacf1-30aa-420a-a7fc-e030e75295cd.png" alt="Airbnb" className="w-4 h-4" />
+              <p className="text-xs text-gray-700 font-medium">5 stars on Airbnb</p>
+            </div>
           </div>
         </div>
       </div>
