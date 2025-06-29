@@ -905,19 +905,19 @@ const Index = () => {
 
   const reviews = [
     {
-      name: "Priya Sharma",
+      name: "Balaji Prasaanth",
       rating: 5,
-      text: "Absolutely magical stay! The plantation views and traditional Coorgi hospitality made our weekend unforgettable."
+      text: "Best budget stay. The owner and the manager was extremely kind. They offered a bigger flat for free of cost since it was vaccant. The stay is nearer to Raja seat and placed main area . The owner also suggested some places to visit and helped us to plan effectively. Overall 10/10. The rooms were clean and neat."
     },
     {
-      name: "Rajesh Kumar",
+      name: "Varsha Lohiya",
       rating: 5,
-      text: "Perfect location, amazing food, and such peaceful surroundings. Highly recommend for families!"
+      text: "Had a comfortable and pleasant stay, perfect for those seeking a homelike environment with a focus on cleanliness and personal service. The rooms are well-maintained and provide a relaxing atmosphere."
     },
     {
-      name: "Anita Reddy",
+      name: "Mohan Singh",
       rating: 5,
-      text: "The bonfire nights and morning coffee walks were highlights. Such warm hosts and beautiful property."
+      text: "Really had good experience staying here. We'll maintained and the care taker was very caring and helpfula dn fulfilled the needs. A very good place to stay in coorg where you have access to good restaurants and ice cream shops."
     }
   ];
 
