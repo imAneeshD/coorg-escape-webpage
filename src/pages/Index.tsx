@@ -161,29 +161,22 @@ const AboutSection = () => (
             </div>
           </div>
 
-          {/* Google Review Card - Bottom Left, extending outside */}
-          <div className="absolute -bottom-6 -left-6 bg-white/95 backdrop-blur-sm rounded-2xl p-4 shadow-lg border max-w-[180px]">
-            <div className="flex items-center gap-1 mb-2">
+          {/* Combined Google & Airbnb Review Card - Bottom Left, extending outside */}
+          <div className="absolute -bottom-6 -left-6 bg-white/95 backdrop-blur-sm rounded-2xl p-4 shadow-lg border max-w-[200px]">
+            <div className="flex items-center gap-1 mb-3">
               {[...Array(5)].map((_, i) => (
                 <Star key={i} className="w-3 h-3 fill-orange-400 text-orange-400" />
               ))}
             </div>
-            <div className="flex items-center gap-2 mb-1">
-              <img src="/lovable-uploads/b1b7d931-adb2-4a41-8d4f-6fb4d1ab0344.png" alt="Google" className="w-4 h-4" />
-              <p className="text-xs text-gray-700 font-medium">5 stars on Google</p>
-            </div>
-          </div>
-
-          {/* Airbnb Review Card - Bottom Right, extending outside */}
-          <div className="absolute -bottom-6 -right-6 bg-white/95 backdrop-blur-sm rounded-2xl p-4 shadow-lg border max-w-[180px]">
-            <div className="flex items-center gap-1 mb-2">
-              {[...Array(5)].map((_, i) => (
-                <Star key={i} className="w-3 h-3 fill-orange-400 text-orange-400" />
-              ))}
-            </div>
-            <div className="flex items-center gap-2 mb-1">
-              <img src="/lovable-uploads/17fcacf1-30aa-420a-a7fc-e030e75295cd.png" alt="Airbnb" className="w-4 h-4" />
-              <p className="text-xs text-gray-700 font-medium">5 stars on Airbnb</p>
+            <div className="space-y-2">
+              <div className="flex items-center gap-2">
+                <img src="/lovable-uploads/b1b7d931-adb2-4a41-8d4f-6fb4d1ab0344.png" alt="Google" className="w-4 h-4" />
+                <p className="text-xs text-gray-700 font-medium">Google Reviews</p>
+              </div>
+              <div className="flex items-center gap-2">
+                <img src="/lovable-uploads/17fcacf1-30aa-420a-a7fc-e030e75295cd.png" alt="Airbnb" className="w-4 h-4" />
+                <p className="text-xs text-gray-700 font-medium">Airbnb Reviews</p>
+              </div>
             </div>
           </div>
         </div>
